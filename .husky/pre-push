@@ -1,0 +1,8 @@
+cleanup() {
+  echo "Cleaning up: stopping Wiremock container..."
+  docker-compose stop wiremock
+}
+
+trap cleanup EXIT
+
+npm run test:unit

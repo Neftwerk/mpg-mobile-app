@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      EXPO_PUBLIC_API_URL: 'http://localhost:8080/api/v1'
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v1
+
+      - name: Run WireMock in Docker
+        run: |
+          docker run -d --name wiremock -p 8080:8080 \
+            -v ${{ github.workspace }}/tests/mappings:/home/wiremock/mappings \
+            -v ${{ github.workspace }}/tests/__files:/home/wiremock/__files \
+            wiremock/wiremock:3.9.1
+
+      - name: Lint & Format
+        run: |
+          npm run lint
+          npm run format
+
+      - name: Run unit tests
+        run: npm run test:unit:ci
+
+      - name: Stop Docker Container
+        if: always()
+        run: docker stop wiremock && docker rm wiremock
