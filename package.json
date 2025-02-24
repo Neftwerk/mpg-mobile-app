@@ -16,8 +16,8 @@
 		"prebuild:memory": "./scripts/update-gradle-props.sh",
 		"detox:build": "npm run prebuild:memory && cross-env-shell \"cd android && ./gradlew assembleDebug assembleAndroidTest\"",
 		"e2e:pretest": "npm run wiremock:start && npm run detox:build && cross-env NODE_ENV=test EXPO_PUBLIC_API_URL=http://10.0.2.2:8080/api/v1 expo run:android",
-		"test:e2e:dev": "detox test -c android.emu.debug --watchAll  --config=tests/e2e/jest.e2e.config.js",
-		"test:e2e": "detox test -c android.emu.debug   --config=tests/e2e/jest.e2e.config.js",
+		"test:e2e:dev": "detox test -c android.emu.debug --watchAll --config=tests/e2e/jest.e2e.config.js",
+		"test:e2e": "detox test -c android.emu.debug --config=tests/e2e/jest.e2e.config.js",
 		"test:unit:dev": "npm run wiremock:start && cross-env EXPO_PUBLIC_API_URL=http://localhost:8080/api/v1 jest --testRegex \"(/tests/unit-test/.*\\.(test|spec))\\.(js|jsx|ts|tsx)$\" --runInBand --watchAll",
 		"test:unit": "npm run wiremock:start && cross-env EXPO_PUBLIC_API_URL=http://localhost:8080/api/v1 jest --testRegex \"(/tests/unit-test/.*\\.(test|spec))\\.(js|jsx|ts|tsx)$\"",
 		"test:unit:ci": "cross-env EXPO_PUBLIC_API_URL=http://localhost:8080/api/v1 jest --testRegex \"(/tests/unit-test/.*\\.(test|spec))\\.(js|jsx|ts|tsx)$\"",
@@ -62,6 +62,7 @@
 		"cross-env": "^7.0.3",
 		"detox": "^20.32.0",
 		"expo": "~52.0.27",
+		"expo-asset": "~11.0.4",
 		"expo-constants": "~17.0.5",
 		"expo-font": "~13.0.3",
 		"expo-linking": "~7.0.5",
@@ -79,6 +80,7 @@
 		"react-native-reanimated": "~3.16.1",
 		"react-native-safe-area-context": "4.12.0",
 		"react-native-screens": "~4.4.0",
+		"react-native-svg": "15.8.0",
 		"react-native-web": "~0.19.10"
 	},
 	"devDependencies": {
