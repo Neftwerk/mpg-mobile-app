@@ -6,8 +6,10 @@ import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import '../../global.css';
-import { Sentry, navigationIntegration } from '../config/sentry-config';
-import { QueryClientProvider } from '../providers/QueryClientProvider';
+
+import BackgroundWrapper from '@/components/BackgroundWrapper/BackgroundWrapper';
+import { Sentry, navigationIntegration } from '@/config/sentry-config';
+import { QueryClientProvider } from '@/providers/QueryClientProvider';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -38,9 +40,28 @@ function RootLayout() {
 	return (
 		<QueryClientProvider>
 			<SafeAreaProvider>
-				<Stack>
-					<Stack.Screen name="index" options={{ title: 'HomePage' }} />
-				</Stack>
+				<BackgroundWrapper>
+					<Stack
+						screenOptions={{
+							contentStyle: {
+								backgroundColor: 'transparent',
+							},
+						}}
+					>
+						<Stack.Screen
+							name="index"
+							options={{
+								title: 'My Pocket Gallery',
+							}}
+						/>
+						<Stack.Screen
+							name="(tabs)"
+							options={{
+								headerShown: false,
+							}}
+						/>
+					</Stack>
+				</BackgroundWrapper>
 			</SafeAreaProvider>
 		</QueryClientProvider>
 	);
