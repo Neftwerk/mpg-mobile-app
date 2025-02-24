@@ -45,7 +45,7 @@ jobs:
           npm run format
 
       - name: Run unit tests
-        run: npm run test:unit:ci
+        run: npm run test:unit:ci -- -u
 
       - name: Stop Docker Container
         if: always()
