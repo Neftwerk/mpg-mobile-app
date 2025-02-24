@@ -1,6 +1,5 @@
 import React from 'react';
-import { Path } from 'react-native-svg';
-import Svg from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
 export const ForumIcon = ({
 	width = 26,
