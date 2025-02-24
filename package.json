@@ -62,7 +62,6 @@
 		"cross-env": "^7.0.3",
 		"detox": "^20.32.0",
 		"expo": "~52.0.27",
-		"expo-asset": "~11.0.4",
 		"expo-constants": "~17.0.5",
 		"expo-font": "~13.0.3",
 		"expo-linking": "~7.0.5",
