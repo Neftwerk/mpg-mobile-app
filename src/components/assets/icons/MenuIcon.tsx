@@ -1,5 +1,6 @@
-import React from 'react';
 import { ImageBackground } from 'react-native';
+
+import { menuIcon } from '../index';
 
 export const MenuIcon = ({
 	width = 25.85,
@@ -12,7 +13,7 @@ export const MenuIcon = ({
 }) => {
 	return (
 		<ImageBackground
-			source={require('../png/hamburgerMenuClosedIcon.png')}
+			source={menuIcon}
 			style={{ width: width, height: height }}
 			resizeMode="contain"
 			testID={testID}

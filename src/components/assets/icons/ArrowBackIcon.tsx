@@ -1,10 +1,12 @@
-import React from 'react';
 import { ImageBackground } from 'react-native';
 
-export const ArrowBackIcon = () => {
+import { arrowBackIcon } from '../index';
+
+export const ArrowBackIcon = ({ testID }: { testID?: string }) => {
 	return (
 		<ImageBackground
-			source={require('../png/arrowBackIcon.png')}
+			testID={testID}
+			source={arrowBackIcon}
 			style={{ width: 18, height: 14, marginLeft: 5, marginRight: 5 }}
 		/>
 	);

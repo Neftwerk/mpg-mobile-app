@@ -1,5 +1,6 @@
-import React from 'react';
 import { ImageBackground } from 'react-native';
+
+import { walletIcon } from '../index';
 
 export const WalletIcon = ({
 	width = 31,
@@ -12,7 +13,7 @@ export const WalletIcon = ({
 }) => {
 	return (
 		<ImageBackground
-			source={require('../png/walletIcon.png')}
+			source={walletIcon}
 			style={{ width: width, height: height }}
 			resizeMode="contain"
 			testID={testID}
