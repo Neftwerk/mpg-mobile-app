@@ -6,12 +6,18 @@ import {
 	View,
 } from 'react-native';
 
-import { MenuIcon } from '@/assets/icons/MenuIcon';
-import { ProfileIcon } from '@/assets/icons/ProfileIcon';
-import { WalletIcon } from '@/assets/icons/WalletIcon';
+import { MenuIcon } from '@/components/assets/icons/MenuIcon';
+import { ProfileIcon } from '@/components/assets/icons/ProfileIcon';
+import { WalletIcon } from '@/components/assets/icons/WalletIcon';
 
 export default function TabLayout() {
 	const navigation = useNavigation();
+
+	const TabsColors = {
+		profile: '#38A8AB',
+		wallet: '#4D7D3B',
+		tabBarBackground: '#F7F4F3',
+	};
 
 	return (
 		<Tabs
@@ -36,7 +42,7 @@ export default function TabLayout() {
 						</TouchableOpacity>
 					),
 				tabBarStyle: {
-					backgroundColor: '#F7F4F3',
+					backgroundColor: TabsColors.tabBarBackground,
 					position: 'absolute',
 					height: 70,
 					elevation: 0,
@@ -83,7 +89,7 @@ export default function TabLayout() {
 					tabBarIcon: () => (
 						<ProfileIcon width={18} height={18} testID="ProfileTabBarIcon" />
 					),
-					tabBarActiveTintColor: '#38A8AB',
+					tabBarActiveTintColor: TabsColors.profile,
 				}}
 			/>
 			<Tabs.Screen
@@ -93,7 +99,7 @@ export default function TabLayout() {
 					tabBarIcon: () => (
 						<WalletIcon width={19} height={19} testID="WalletTabBarIcon" />
 					),
-					tabBarActiveTintColor: '#4D7D3B',
+					tabBarActiveTintColor: TabsColors.wallet,
 				}}
 			/>
 		</Tabs>
