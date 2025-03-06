@@ -1,7 +1,6 @@
-import React from 'react';
 import { Text, View } from 'react-native';
 
-import BackgroundWrapper from '@/components/BackgroundWrapper/BackgroundWrapper';
+import { BackgroundWrapper } from '@/components/BackgroundWrapper/BackgroundWrapper';
 
 export default function ProfileScreen() {
 	return (

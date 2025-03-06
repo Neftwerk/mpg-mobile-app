@@ -7,7 +7,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import '../../global.css';
 
-import BackgroundWrapper from '@/components/BackgroundWrapper/BackgroundWrapper';
+import { BackgroundWrapper } from '@/components/BackgroundWrapper/BackgroundWrapper';
 import { Sentry, navigationIntegration } from '@/config/sentry-config';
 import { QueryClientProvider } from '@/providers/QueryClientProvider';
 
