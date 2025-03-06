@@ -28,7 +28,7 @@ describe('Home Screen', () => {
 	describe('Home Page Buttons', () => {
 		it('Should render all hexagon buttons with correct labels', async () => {
 			for (const hexagon of hexagonButtonIds) {
-				await waitFor(element(by.id(`${hexagon}`)))
+				await waitFor(element(by.id(hexagon)))
 					.toExist()
 					.withTimeout(5000);
 			}
