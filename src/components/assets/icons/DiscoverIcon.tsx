@@ -1,14 +1,16 @@
 import Svg, { Path } from 'react-native-svg';
 
+interface IDiscoverIconProps {
+	width?: number;
+	height?: number;
+	testID?: string;
+}
+
 export const DiscoverIcon = ({
 	width = 25,
 	height = 26,
 	testID,
-}: {
-	width?: number;
-	height?: number;
-	testID?: string;
-}) => {
+}: IDiscoverIconProps) => {
 	return (
 		<Svg
 			width={width}

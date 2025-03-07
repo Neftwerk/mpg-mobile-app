@@ -2,15 +2,17 @@ import { ImageBackground } from 'react-native';
 
 import { menuIcon } from '../index';
 
+interface IMenuIconProps {
+	width?: number;
+	height?: number;
+	testID?: string;
+}
+
 export const MenuIcon = ({
 	width = 25.85,
 	height = 16,
 	testID,
-}: {
-	width?: number;
-	height?: number;
-	testID?: string;
-}) => {
+}: IMenuIconProps) => {
 	return (
 		<ImageBackground
 			source={menuIcon}
