@@ -1,8 +1,18 @@
+import { Href, Redirect } from 'expo-router';
+import { useContext } from 'react';
 import { Text, View } from 'react-native';
 
 import { BackgroundWrapper } from '@/components/BackgroundWrapper/BackgroundWrapper';
+import { NavigationRoutes } from '@/constants/navigation.routes.enum';
+import { AuthContext } from '@/context/auth.context';
 
-export default function ProfileScreen() {
+const ProfileScreen = () => {
+	const { isAuthenticated } = useContext(AuthContext);
+
+	if (!isAuthenticated) {
+		return <Redirect href={NavigationRoutes.LOGIN as Href} />;
+	}
+
 	return (
 		<BackgroundWrapper>
 			<View
@@ -13,4 +23,6 @@ export default function ProfileScreen() {
 			</View>
 		</BackgroundWrapper>
 	);
-}
+};
+
+export default ProfileScreen;
