@@ -1,5 +1,4 @@
 import { QueryClientProvider as TanStackQueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 
 import { queryClient } from '../config/react-query';
 

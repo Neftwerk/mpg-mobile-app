@@ -1,19 +1,22 @@
-import { render, waitFor } from '@testing-library/react-native';
-import React from 'react';
+import { render } from '@testing-library/react-native';
 
 import { HomeComponent } from '@/components/home/HomeComponent';
 
 describe('HomeScreen', () => {
-	test('Should home screen match snapshot', async () => {
-		const tree = render(<HomeComponent />).toJSON();
-		await waitFor(() => expect(tree).toMatchSnapshot());
-	});
+	const HomePageButtonsText = [
+		'Forum',
+		'Gallery',
+		'Discover',
+		'Wallet',
+		'Profile',
+	];
 
-	test('Text renders correctly on HomeScreen', async () => {
+	test('Should render home page buttons', async () => {
 		const { findByText } = render(<HomeComponent />);
 
-		const greetingText = await findByText('Welcome!');
-
-		expect(greetingText).toBeTruthy();
+		for (const buttonText of HomePageButtonsText) {
+			const button = await findByText(buttonText);
+			expect(button).toBeTruthy();
+		}
 	});
 });
