@@ -1,1 +1,1 @@
-export const TOKEN_EXPIRED_ERROR = 'TokenExpired';
+export const TOKEN_EXPIRED_ERROR = 'Token expired';
