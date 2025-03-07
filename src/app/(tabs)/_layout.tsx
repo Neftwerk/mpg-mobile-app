@@ -1,23 +1,28 @@
-import { Tabs, useNavigation } from 'expo-router';
-import {
-	Text,
-	TouchableOpacity,
-	TouchableWithoutFeedback,
-	View,
-} from 'react-native';
+import { Href, Tabs, useRouter } from 'expo-router';
+import { useContext } from 'react';
+import { TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 
+import { BackButton } from '@/components/BackButton/BackButton';
+import { DiscoverIcon } from '@/components/assets/icons/DiscoverIcon';
+import { ForumIcon } from '@/components/assets/icons/ForumIcon';
+import { GalleryIcon } from '@/components/assets/icons/GalleryIcon';
 import { MenuIcon } from '@/components/assets/icons/MenuIcon';
 import { ProfileIcon } from '@/components/assets/icons/ProfileIcon';
 import { WalletIcon } from '@/components/assets/icons/WalletIcon';
+import { NavigationRoutes } from '@/constants/navigation.routes.enum';
+import { AuthContext } from '@/context/auth.context';
 
 export default function TabLayout() {
-	const navigation = useNavigation();
-
 	const TabsColors = {
 		profile: '#38A8AB',
 		wallet: '#4D7D3B',
+		discover: '#1A3F6C',
+		gallery: '#1A3F6C',
+		forum: '#4D91A7',
 		tabBarBackground: '#F7F4F3',
 	};
+	const router = useRouter();
+	const { isAuthenticated } = useContext(AuthContext);
 
 	return (
 		<Tabs
@@ -33,13 +38,8 @@ export default function TabLayout() {
 				),
 				headerShown: true,
 				headerLeft: () =>
-					navigation.canGoBack() && (
-						<TouchableOpacity
-							onPress={() => navigation.goBack()}
-							testID="GoBackButton"
-						>
-							<Text className="text-4xl pl-4 pr-2 items-center">←</Text>
-						</TouchableOpacity>
+					router.canGoBack() && (
+						<BackButton className="pl-2" returnType={'dismiss'} />
 					),
 				tabBarStyle: {
 					backgroundColor: TabsColors.tabBarBackground,
@@ -73,15 +73,53 @@ export default function TabLayout() {
 				},
 				headerPressOpacity: 1,
 				headerRight: () => (
-					<TouchableOpacity
-						className="px-4"
-						onPress={() => navigation.goBack()}
-					>
+					<TouchableOpacity className="px-4">
 						<MenuIcon testID="MenuIcon" />
 					</TouchableOpacity>
 				),
 			}}
 		>
+			<Tabs.Screen
+				name="forum"
+				options={{
+					title: 'Forum',
+					tabBarIcon: () => (
+						<ForumIcon width={19} height={19} testID="ForumTabBarIcon" />
+					),
+					tabBarActiveTintColor: TabsColors.forum,
+				}}
+			/>
+
+			<Tabs.Screen
+				name="discover"
+				options={{
+					title: 'Discover',
+					tabBarIcon: () => (
+						<DiscoverIcon width={19} height={19} testID="DiscoverTabBarIcon" />
+					),
+					tabBarActiveTintColor: TabsColors.discover,
+				}}
+			/>
+
+			<Tabs.Screen
+				name="gallery"
+				options={{
+					title: 'Gallery',
+					tabBarIcon: () => (
+						<GalleryIcon width={19} height={19} testID="GalleryTabBarIcon" />
+					),
+					tabBarActiveTintColor: TabsColors.gallery,
+				}}
+				listeners={{
+					tabPress: (e) => {
+						if (!isAuthenticated) {
+							e.preventDefault();
+							router.push(NavigationRoutes.LOGIN as Href);
+						}
+					},
+				}}
+			/>
+
 			<Tabs.Screen
 				name="profile"
 				options={{
@@ -91,7 +129,16 @@ export default function TabLayout() {
 					),
 					tabBarActiveTintColor: TabsColors.profile,
 				}}
+				listeners={{
+					tabPress: (e) => {
+						if (!isAuthenticated) {
+							e.preventDefault();
+							router.push(NavigationRoutes.LOGIN as Href);
+						}
+					},
+				}}
 			/>
+
 			<Tabs.Screen
 				name="wallet"
 				options={{
@@ -100,6 +147,14 @@ export default function TabLayout() {
 						<WalletIcon width={19} height={19} testID="WalletTabBarIcon" />
 					),
 					tabBarActiveTintColor: TabsColors.wallet,
+				}}
+				listeners={{
+					tabPress: (e) => {
+						if (!isAuthenticated) {
+							e.preventDefault();
+							router.push(NavigationRoutes.LOGIN as Href);
+						}
+					},
 				}}
 			/>
 		</Tabs>
