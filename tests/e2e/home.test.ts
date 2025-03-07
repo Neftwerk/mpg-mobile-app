@@ -34,32 +34,64 @@ describe('Home Screen', () => {
 			}
 		});
 
-		it('Should navigate to Profile when Profile button is pressed', async () => {
+		it('Should navigate to Login Page if the Profile is pressed without being logged in', async () => {
 			await waitFor(element(by.id('ProfileContainerButton')))
 				.toExist()
 				.withTimeout(5000);
 
 			await element(by.id('ProfileContainerButton')).tap();
-			await waitFor(element(by.id('ProfileScreenText')))
+			await waitFor(element(by.id('LoginScreenTitle')))
 				.toBeVisible()
 				.withTimeout(4000);
 		});
 
-		it('Should navigate to Wallet when Wallet button is pressed', async () => {
+		it('Should navigate to Login Page if the Wallet button is pressed without being logged in', async () => {
 			await waitFor(element(by.id('WalletContainerButton')))
 				.toExist()
 				.withTimeout(5000);
 			await element(by.id('WalletContainerButton')).tap();
-			await expect(element(by.id('WalletScreenText'))).toBeVisible();
+			await waitFor(element(by.id('LoginScreenTitle')))
+				.toBeVisible()
+				.withTimeout(4000);
+		});
+
+		it('Should navigate to Login Page if the Gallery button is pressed without being logged in', async () => {
+			await waitFor(element(by.id('GalleryContainerButton')))
+				.toExist()
+				.withTimeout(5000);
+			await element(by.id('GalleryContainerButton')).tap();
+			await waitFor(element(by.id('LoginScreenTitle')))
+				.toBeVisible()
+				.withTimeout(4000);
+		});
+
+		it('Should navigate to Forum Page if the Forum button is pressed', async () => {
+			await waitFor(element(by.id('ForumContainerButton')))
+				.toExist()
+				.withTimeout(5000);
+			await element(by.id('ForumContainerButton')).tap();
+			await waitFor(element(by.id('ForumScreenText')))
+				.toBeVisible()
+				.withTimeout(3000);
+		});
+
+		it('Should navigate to Discover Page if the Discover button is pressed', async () => {
+			await waitFor(element(by.id('DiscoverContainerButton')))
+				.toExist()
+				.withTimeout(5000);
+			await element(by.id('DiscoverContainerButton')).tap();
+			await waitFor(element(by.id('DiscoverScreenText')))
+				.toBeVisible()
+				.withTimeout(3000);
 		});
 	});
 
 	describe('Navigation', () => {
 		beforeEach(async () => {
-			await waitFor(element(by.id('WalletContainerButton')))
+			await waitFor(element(by.id('ForumContainerButton')))
 				.toExist()
 				.withTimeout(5000);
-			await element(by.id('WalletContainerButton')).tap();
+			await element(by.id('ForumContainerButton')).tap();
 		});
 
 		it('Should show back button when navigating to a new screen', async () => {
