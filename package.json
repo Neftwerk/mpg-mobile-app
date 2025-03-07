@@ -54,6 +54,7 @@
 		"@config-plugins/detox": "^9.0.0",
 		"@expo/env": "^0.3.0",
 		"@expo/vector-icons": "^14.0.2",
+		"@hookform/resolvers": "^4.1.2",
 		"@react-native-async-storage/async-storage": "^2.1.1",
 		"@react-navigation/native": "^6.0.2",
 		"@sentry/react-native": "^6.6.0",
@@ -73,6 +74,7 @@
 		"nativewind": "^4.1.23",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
+		"react-hook-form": "^7.54.2",
 		"react-native": "0.76.6",
 		"react-native-dotenv": "^3.4.11",
 		"react-native-gesture-handler": "~2.20.2",
@@ -80,7 +82,9 @@
 		"react-native-safe-area-context": "4.12.0",
 		"react-native-screens": "~4.4.0",
 		"react-native-svg": "15.8.0",
-		"react-native-web": "~0.19.10"
+		"react-native-web": "~0.19.10",
+		"wiremock-captain": "^3.6.0",
+		"yup": "^1.6.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.0",
