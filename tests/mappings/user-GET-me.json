@@ -1,0 +1,38 @@
+{
+	"request": {
+		"method": "GET",
+		"url": "/api/v1/user/me",
+		"headers": {
+			"Authorization": {
+				"matches": "Bearer (.*)"
+			}
+		}
+	},
+	"response": {
+		"status": 200,
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"jsonBody": {
+			"data": {
+				"type": "user",
+				"id": "2",
+				"attributes": {
+					"uuid": "d252ab36-f160-4306-9760-81feb153f7da",
+					"username": "user@test.com",
+					"externalId": "67b634887fad19ce64d70897",
+					"name": "John",
+					"surname": "Doe",
+					"biography": "Test biography",
+					"roles": ["regular"],
+					"createdAt": "2025-02-19T22:38:41.229Z",
+					"updatedAt": "2025-02-19T22:47:17.000Z",
+					"deletedAt": null
+				}
+			},
+			"links": {
+				"self": "http://localhost:5001/api/v1/user/me"
+			}
+		}
+	}
+}
