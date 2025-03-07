@@ -14,10 +14,10 @@ const GalleryScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="GalleryScreen"
+				testID="galleryScreen"
 				className="flex-1 justify-center items-center bg-transparent"
 			>
-				<Text testID="GalleryScreenText">Gallery</Text>
+				<Text testID="galleryScreenText">Gallery</Text>
 			</View>
 		</BackgroundWrapper>
 	);

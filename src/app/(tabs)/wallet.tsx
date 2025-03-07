@@ -14,10 +14,10 @@ const WalletScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="WalletScreen"
+				testID="walletScreen"
 				className="flex-1 justify-center items-center bg-transparent"
 			>
-				<Text testID="WalletScreenText">Wallet</Text>
+				<Text testID="walletScreenText">Wallet</Text>
 			</View>
 		</BackgroundWrapper>
 	);

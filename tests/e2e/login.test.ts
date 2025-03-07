@@ -17,47 +17,47 @@ describe('Login Screen', () => {
 		await device.reloadReactNative();
 		await wiremock.clearAllExceptDefault();
 
-		await waitFor(element(by.id('ProfileContainerButton')))
+		await waitFor(element(by.id('profileContainerButton')))
 			.toExist()
 			.withTimeout(5000);
 
-		await element(by.id('ProfileContainerButton')).tap();
+		await element(by.id('profileContainerButton')).tap();
 
-		await waitFor(element(by.id('LoginScreenTitle')))
+		await waitFor(element(by.id('loginScreenTitle')))
 			.toBeVisible()
 			.withTimeout(5000);
 	});
 
 	describe('UI Elements', () => {
 		it('Should render all login form elements', async () => {
-			await expect(element(by.id('LoginScreenTitle'))).toBeVisible();
-			await expect(element(by.id('LoginUsernameInput'))).toBeVisible();
-			await expect(element(by.id('LoginPasswordInput'))).toBeVisible();
-			await expect(element(by.id('LoginSubmitButton'))).toBeVisible();
-			await expect(element(by.id('GoToForgotPasswordButton'))).toBeVisible();
-			await expect(element(by.id('GoToRegisterButton'))).toBeVisible();
+			await expect(element(by.id('loginScreenTitle'))).toBeVisible();
+			await expect(element(by.id('loginUsernameInput'))).toBeVisible();
+			await expect(element(by.id('loginPasswordInput'))).toBeVisible();
+			await expect(element(by.id('loginSubmitButton'))).toBeVisible();
+			await expect(element(by.id('goToForgotPasswordButton'))).toBeVisible();
+			await expect(element(by.id('goToRegisterButton'))).toBeVisible();
 		});
 	});
 
 	describe('Form Validation', () => {
 		it('Should show validation errors for empty fields', async () => {
-			await element(by.id('LoginSubmitButton')).tap();
-			await expect(element(by.id('LoginUsernameInputError'))).toBeVisible();
-			await expect(element(by.id('LoginPasswordInputError'))).toBeVisible();
+			await element(by.id('loginSubmitButton')).tap();
+			await expect(element(by.id('loginUsernameInputError'))).toBeVisible();
+			await expect(element(by.id('loginPasswordInputError'))).toBeVisible();
 		});
 
 		it('Should show error for invalid email format', async () => {
-			await element(by.id('LoginUsernameInput')).typeText('invalidemail');
-			await element(by.id('LoginSubmitButton')).tap();
-			await expect(element(by.id('LoginUsernameInputError'))).toBeVisible();
+			await element(by.id('loginUsernameInput')).typeText('invalidemail');
+			await element(by.id('loginSubmitButton')).tap();
+			await expect(element(by.id('loginUsernameInputError'))).toBeVisible();
 		});
 	});
 
 	describe('Login Flow', () => {
 		it('Should successfully login with valid credentials', async () => {
-			await element(by.id('LoginUsernameInput')).typeText('user@test.com');
-			await element(by.id('LoginPasswordInput')).typeText('Qwer@123');
-			await element(by.id('LoginSubmitButton')).tap();
+			await element(by.id('loginUsernameInput')).typeText('user@test.com');
+			await element(by.id('loginPasswordInput')).typeText('Qwer@123');
+			await element(by.id('loginSubmitButton')).tap();
 
 			await waitFor(element(by.label('My Pocket Gallery')))
 				.toBeVisible()
@@ -65,9 +65,9 @@ describe('Login Screen', () => {
 		});
 
 		it('Should show error message for invalid credentials', async () => {
-			await element(by.id('LoginUsernameInput')).typeText('wrong@example.com');
-			await element(by.id('LoginPasswordInput')).typeText('WrongPassword123!');
-			await element(by.id('LoginSubmitButton')).tap();
+			await element(by.id('loginUsernameInput')).typeText('wrong@example.com');
+			await element(by.id('loginPasswordInput')).typeText('WrongPassword123!');
+			await element(by.id('loginSubmitButton')).tap();
 
 			await waitFor(element(by.text('OK')))
 				.toBeVisible()
@@ -79,20 +79,20 @@ describe('Login Screen', () => {
 
 	describe('Navigation', () => {
 		it('Should navigate to forgot password screen', async () => {
-			await expect(element(by.id('GoToForgotPasswordButton'))).toBeVisible();
-			await element(by.id('GoToForgotPasswordButton')).tap();
-			await expect(element(by.id('ForgotPasswordScreenTitle'))).toBeVisible();
+			await expect(element(by.id('goToForgotPasswordButton'))).toBeVisible();
+			await element(by.id('goToForgotPasswordButton')).tap();
+			await expect(element(by.id('forgotPasswordScreenTitle'))).toBeVisible();
 		});
 
 		it('Should navigate to register screen', async () => {
-			await expect(element(by.id('GoToRegisterButton'))).toBeVisible();
-			await element(by.id('GoToRegisterButton')).tap();
-			await expect(element(by.id('RegisterScreenTitle'))).toBeVisible();
+			await expect(element(by.id('goToRegisterButton'))).toBeVisible();
+			await element(by.id('goToRegisterButton')).tap();
+			await expect(element(by.id('registerScreenTitle'))).toBeVisible();
 		});
 
 		it('Should show back button and navigate back', async () => {
-			await expect(element(by.id('GoBackButton'))).toBeVisible();
-			await element(by.id('GoBackButton')).tap();
+			await expect(element(by.id('goBackButton'))).toBeVisible();
+			await element(by.id('goBackButton')).tap();
 			await expect(element(by.label('My Pocket Gallery'))).toBeVisible();
 		});
 	});

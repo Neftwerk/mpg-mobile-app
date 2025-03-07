@@ -23,13 +23,13 @@ describe('RegisterScreen', () => {
 	test('Should render register screen correctly', async () => {
 		const { findByTestId } = render(<RegisterScreen />);
 
-		const screen = await findByTestId('RegisterScreen');
-		const usernameInput = await findByTestId('RegisterUsernameInput');
-		const passwordInput = await findByTestId('RegisterPasswordInput');
-		const nameInput = await findByTestId('RegisterNameInput');
-		const surnameInput = await findByTestId('RegisterSurnameInput');
-		const biographyInput = await findByTestId('RegisterBiographyInput');
-		const submitButton = await findByTestId('RegisterSubmitButton');
+		const screen = await findByTestId('registerScreen');
+		const usernameInput = await findByTestId('registerUsernameInput');
+		const passwordInput = await findByTestId('registerPasswordInput');
+		const nameInput = await findByTestId('registerNameInput');
+		const surnameInput = await findByTestId('registerSurnameInput');
+		const biographyInput = await findByTestId('registerBiographyInput');
+		const submitButton = await findByTestId('registerSubmitButton');
 
 		expect(screen).toBeTruthy();
 		expect(usernameInput).toBeTruthy();
@@ -43,14 +43,14 @@ describe('RegisterScreen', () => {
 	test('Should call sign up mutation when form is submitted', async () => {
 		const { findByTestId } = render(<RegisterScreen />);
 
-		const usernameInput = await findByTestId('RegisterUsernameInput');
-		const passwordInput = await findByTestId('RegisterPasswordInput');
-		const nameInput = await findByTestId('RegisterNameInput');
-		const surnameInput = await findByTestId('RegisterSurnameInput');
-		const biographyInput = await findByTestId('RegisterBiographyInput');
-		const submitButton = await findByTestId('RegisterSubmitButton');
+		const usernameInput = await findByTestId('registerUsernameInput');
+		const passwordInput = await findByTestId('registerPasswordInput');
+		const nameInput = await findByTestId('registerNameInput');
+		const surnameInput = await findByTestId('registerSurnameInput');
+		const biographyInput = await findByTestId('registerBiographyInput');
+		const submitButton = await findByTestId('registerSubmitButton');
 
-		await act(async () => {
+		act(() => {
 			fireEvent.changeText(usernameInput, 'test@example.com');
 			fireEvent.changeText(passwordInput, 'Password.123');
 			fireEvent.changeText(nameInput, 'John');

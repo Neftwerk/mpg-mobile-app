@@ -17,21 +17,21 @@ describe('Confirm Password Screen', () => {
 		await device.reloadReactNative();
 		await wiremock.clearAllExceptDefault();
 
-		await waitFor(element(by.id('ProfileContainerButton')))
+		await waitFor(element(by.id('profileContainerButton')))
 			.toExist()
 			.withTimeout(5000);
 
-		await element(by.id('ProfileContainerButton')).tap();
-		await element(by.id('GoToForgotPasswordButton')).tap();
+		await element(by.id('profileContainerButton')).tap();
+		await element(by.id('goToForgotPasswordButton')).tap();
 
-		await waitFor(element(by.id('ForgotPasswordScreenTitle')))
+		await waitFor(element(by.id('forgotPasswordScreenTitle')))
 			.toBeVisible()
 			.withTimeout(5000);
 
-		await element(by.id('ForgotPasswordUsernameInput')).typeText(
+		await element(by.id('forgotPasswordUsernameInput')).typeText(
 			'user@test.com',
 		);
-		await element(by.id('ForgotPasswordSubmitButton')).tap();
+		await element(by.id('forgotPasswordSubmitButton')).tap();
 
 		await waitFor(element(by.text('OK')))
 			.toBeVisible()
@@ -39,49 +39,49 @@ describe('Confirm Password Screen', () => {
 
 		await element(by.text('OK')).tap();
 
-		await waitFor(element(by.id('ConfirmPasswordScreenTitle')))
+		await waitFor(element(by.id('confirmPasswordScreenTitle')))
 			.toBeVisible()
 			.withTimeout(5000);
 	});
 
 	describe('UI Elements', () => {
 		it('Should render all password reset form elements', async () => {
-			await expect(element(by.id('ConfirmPasswordScreenTitle'))).toBeVisible();
-			await expect(element(by.id('ConfirmPasswordCodeInput'))).toBeVisible();
+			await expect(element(by.id('confirmPasswordScreenTitle'))).toBeVisible();
+			await expect(element(by.id('confirmPasswordCodeInput'))).toBeVisible();
 			await expect(
-				element(by.id('ConfirmPasswordNewPasswordInput')),
+				element(by.id('confirmPasswordNewPasswordInput')),
 			).toBeVisible();
-			await expect(element(by.id('ConfirmPasswordSubmitButton'))).toBeVisible();
+			await expect(element(by.id('confirmPasswordSubmitButton'))).toBeVisible();
 		});
 	});
 
 	describe('Form Validation', () => {
 		it('Should show validation errors for empty fields', async () => {
-			await element(by.id('ConfirmPasswordSubmitButton')).tap();
+			await element(by.id('confirmPasswordSubmitButton')).tap();
 			await expect(
-				element(by.id('ConfirmPasswordCodeInputError')),
+				element(by.id('confirmPasswordCodeInputError')),
 			).toBeVisible();
 			await expect(
-				element(by.id('ConfirmPasswordNewPasswordInputError')),
+				element(by.id('confirmPasswordNewPasswordInputError')),
 			).toBeVisible();
 		});
 
 		it('Should show error for invalid confirmation code format', async () => {
-			await element(by.id('ConfirmPasswordCodeInput')).typeText('123');
-			await element(by.id('ConfirmPasswordSubmitButton')).tap();
+			await element(by.id('confirmPasswordCodeInput')).typeText('123');
+			await element(by.id('confirmPasswordSubmitButton')).tap();
 			await expect(
-				element(by.id('ConfirmPasswordCodeInputError')),
+				element(by.id('confirmPasswordCodeInputError')),
 			).toBeVisible();
 		});
 	});
 
 	describe('Password Reset Flow', () => {
 		it('Should successfully reset password with valid information', async () => {
-			await element(by.id('ConfirmPasswordNewPasswordInput')).typeText(
+			await element(by.id('confirmPasswordNewPasswordInput')).typeText(
 				'Qwer@123',
 			);
-			await element(by.id('ConfirmPasswordCodeInput')).typeText('615278');
-			await element(by.id('ConfirmPasswordSubmitButton')).tap();
+			await element(by.id('confirmPasswordCodeInput')).typeText('615278');
+			await element(by.id('confirmPasswordSubmitButton')).tap();
 
 			await waitFor(element(by.text('OK')))
 				.toBeVisible()
@@ -89,7 +89,7 @@ describe('Confirm Password Screen', () => {
 
 			await element(by.text('OK')).tap();
 
-			await waitFor(element(by.id('LoginScreenTitle')))
+			await waitFor(element(by.id('loginScreenTitle')))
 				.toBeVisible()
 				.withTimeout(3000);
 		});
@@ -97,9 +97,9 @@ describe('Confirm Password Screen', () => {
 
 	describe('Navigation', () => {
 		it('Should show back button and navigate back to forgot password screen', async () => {
-			await expect(element(by.id('GoBackButton'))).toBeVisible();
-			await element(by.id('GoBackButton')).tap();
-			await expect(element(by.id('ForgotPasswordScreenTitle'))).toBeVisible();
+			await expect(element(by.id('goBackButton'))).toBeVisible();
+			await element(by.id('goBackButton')).tap();
+			await expect(element(by.id('forgotPasswordScreenTitle'))).toBeVisible();
 		});
 	});
 });

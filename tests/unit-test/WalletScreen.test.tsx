@@ -56,8 +56,8 @@ describe('WalletScreen', () => {
 			</AuthContext.Provider>,
 		);
 
-		const screen = await findByTestId('WalletScreen');
-		const text = await findByTestId('WalletScreenText');
+		const screen = await findByTestId('walletScreen');
+		const text = await findByTestId('walletScreenText');
 
 		expect(screen).toBeTruthy();
 		expect(text).toBeTruthy();

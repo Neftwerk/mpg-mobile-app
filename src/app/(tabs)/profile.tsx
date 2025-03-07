@@ -16,10 +16,10 @@ const ProfileScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="ProfileScreen"
+				testID="profileScreen"
 				className="flex-1 justify-center items-center bg-transparent"
 			>
-				<Text testID="ProfileScreenText">Profile</Text>
+				<Text testID="profileScreenText">Profile</Text>
 			</View>
 		</BackgroundWrapper>
 	);

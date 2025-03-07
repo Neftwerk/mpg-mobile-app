@@ -23,8 +23,8 @@ describe('ForgotPasswordScreen', () => {
 	test('Should render forgot password screen correctly', async () => {
 		const { findByTestId, findByText } = render(<ForgotPasswordScreen />);
 
-		const screen = await findByTestId('ForgotPasswordScreen');
-		const usernameInput = await findByTestId('ForgotPasswordUsernameInput');
+		const screen = await findByTestId('forgotPasswordScreen');
+		const usernameInput = await findByTestId('forgotPasswordUsernameInput');
 		const sendButton = await findByText('Send Code');
 
 		expect(screen).toBeTruthy();
@@ -35,10 +35,10 @@ describe('ForgotPasswordScreen', () => {
 	test('Should call forgot password mutation when form is submitted', async () => {
 		const { findByTestId, findByText } = render(<ForgotPasswordScreen />);
 
-		const usernameInput = await findByTestId('ForgotPasswordUsernameInput');
+		const usernameInput = await findByTestId('forgotPasswordUsernameInput');
 		const sendButton = await findByText('Send Code');
 
-		await act(async () => {
+		act(() => {
 			fireEvent.changeText(usernameInput, 'test@example.com');
 			fireEvent.press(sendButton);
 		});

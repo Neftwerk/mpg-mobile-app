@@ -17,82 +17,82 @@ describe('Register Screen', () => {
 		await device.reloadReactNative();
 		await wiremock.clearAllExceptDefault();
 
-		await waitFor(element(by.id('ProfileContainerButton')))
+		await waitFor(element(by.id('profileContainerButton')))
 			.toExist()
 			.withTimeout(5000);
 
-		await element(by.id('ProfileContainerButton')).tap();
-		await element(by.id('GoToRegisterButton')).tap();
+		await element(by.id('profileContainerButton')).tap();
+		await element(by.id('goToRegisterButton')).tap();
 
-		await waitFor(element(by.id('RegisterScreenTitle')))
+		await waitFor(element(by.id('registerScreenTitle')))
 			.toBeVisible()
 			.withTimeout(5000);
 	});
 
 	describe('UI Elements', () => {
 		it('Should render all registration form elements', async () => {
-			await expect(element(by.id('RegisterScreenTitle'))).toBeVisible();
+			await expect(element(by.id('registerScreenTitle'))).toBeVisible();
 
-			await expect(element(by.id('RegisterUsernameInput'))).toBeVisible();
-			await expect(element(by.id('RegisterPasswordInput'))).toBeVisible();
-			await expect(element(by.id('RegisterNameInput'))).toBeVisible();
-			await expect(element(by.id('RegisterSurnameInput'))).toBeVisible();
-			await expect(element(by.id('RegisterBiographyInput'))).toBeVisible();
+			await expect(element(by.id('registerUsernameInput'))).toBeVisible();
+			await expect(element(by.id('registerPasswordInput'))).toBeVisible();
+			await expect(element(by.id('registerNameInput'))).toBeVisible();
+			await expect(element(by.id('registerSurnameInput'))).toBeVisible();
+			await expect(element(by.id('registerBiographyInput'))).toBeVisible();
 
-			await expect(element(by.id('RegisterSubmitButton'))).toBeVisible();
+			await expect(element(by.id('registerSubmitButton'))).toBeVisible();
 		});
 	});
 
 	describe('Form Validation', () => {
 		it('Should show validation errors for empty fields', async () => {
-			await element(by.id('RegisterSubmitButton')).tap();
-			await expect(element(by.id('RegisterUsernameInputError'))).toBeVisible();
-			await expect(element(by.id('RegisterPasswordInputError'))).toBeVisible();
-			await expect(element(by.id('RegisterNameInputError'))).toBeVisible();
-			await expect(element(by.id('RegisterSurnameInputError'))).toBeVisible();
+			await element(by.id('registerSubmitButton')).tap();
+			await expect(element(by.id('registerUsernameInputError'))).toBeVisible();
+			await expect(element(by.id('registerPasswordInputError'))).toBeVisible();
+			await expect(element(by.id('registerNameInputError'))).toBeVisible();
+			await expect(element(by.id('registerSurnameInputError'))).toBeVisible();
 		});
 
 		it('Should show error for invalid email format', async () => {
-			await element(by.id('RegisterUsernameInput')).typeText('invalidemail');
-			await element(by.id('RegisterSubmitButton')).tap();
-			await expect(element(by.id('RegisterUsernameInputError'))).toBeVisible();
+			await element(by.id('registerUsernameInput')).typeText('invalidemail');
+			await element(by.id('registerSubmitButton')).tap();
+			await expect(element(by.id('registerUsernameInputError'))).toBeVisible();
 		});
 	});
 
 	describe('Registration Flow', () => {
 		it('Should successfully register with valid information', async () => {
-			await element(by.id('RegisterUsernameInput')).typeText('user@test.com');
-			await element(by.id('RegisterPasswordInput')).typeText('Qwer@123');
-			await element(by.id('RegisterNameInput')).typeText('John2');
-			await element(by.id('RegisterSurnameInput')).typeText('Doe2');
-			await element(by.id('RegisterBiographyInput')).typeText(
+			await element(by.id('registerUsernameInput')).typeText('user@test.com');
+			await element(by.id('registerPasswordInput')).typeText('Qwer@123');
+			await element(by.id('registerNameInput')).typeText('John2');
+			await element(by.id('registerSurnameInput')).typeText('Doe2');
+			await element(by.id('registerBiographyInput')).typeText(
 				'I am a test user',
 			);
-			await element(by.id('RegisterSubmitButton')).tap();
+			await element(by.id('registerSubmitButton')).tap();
 
-			await waitFor(element(by.id('ConfirmUserScreenTitle')))
+			await waitFor(element(by.id('confirmUserScreenTitle')))
 				.toBeVisible()
 				.withTimeout(5000);
 		});
 
 		it('Should stay in the register page if there is an error creating a user', async () => {
-			await element(by.id('RegisterNameInput')).typeText('Test User');
-			await element(by.id('RegisterUsernameInput')).typeText(
+			await element(by.id('registerNameInput')).typeText('Test User');
+			await element(by.id('registerUsernameInput')).typeText(
 				'existing@test.com',
 			);
-			await element(by.id('RegisterPasswordInput')).typeText('pwer123');
-			await element(by.id('RegisterSurnameInput')).typeText('Doe2');
-			await element(by.id('RegisterSubmitButton')).tap();
+			await element(by.id('registerPasswordInput')).typeText('pwer123');
+			await element(by.id('registerSurnameInput')).typeText('Doe2');
+			await element(by.id('registerSubmitButton')).tap();
 
-			await expect(element(by.id('RegisterScreenTitle'))).toBeVisible();
+			await expect(element(by.id('registerScreenTitle'))).toBeVisible();
 		});
 	});
 
 	describe('Navigation', () => {
 		it('Should navigate to login screen', async () => {
-			await expect(element(by.id('GoBackButton'))).toBeVisible();
-			await element(by.id('GoBackButton')).tap();
-			await expect(element(by.id('LoginScreenTitle'))).toBeVisible();
+			await expect(element(by.id('goBackButton'))).toBeVisible();
+			await element(by.id('goBackButton')).tap();
+			await expect(element(by.id('loginScreenTitle'))).toBeVisible();
 		});
 	});
 });

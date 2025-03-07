@@ -5,7 +5,7 @@ import { HomePageButtonsComponent } from './HomePageButtons/HomePageButtonsCompo
 export const HomeComponent = () => {
 	return (
 		<ScrollView>
-			<View testID="HomeScreen">
+			<View testID="homeScreen">
 				<HomePageButtonsComponent />
 			</View>
 		</ScrollView>

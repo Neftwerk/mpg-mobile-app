@@ -3,12 +3,14 @@ import { useContext } from 'react';
 import { TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 
 import { BackButton } from '@/components/BackButton/BackButton';
-import { DiscoverIcon } from '@/components/assets/icons/DiscoverIcon';
-import { ForumIcon } from '@/components/assets/icons/ForumIcon';
-import { GalleryIcon } from '@/components/assets/icons/GalleryIcon';
-import { MenuIcon } from '@/components/assets/icons/MenuIcon';
-import { ProfileIcon } from '@/components/assets/icons/ProfileIcon';
-import { WalletIcon } from '@/components/assets/icons/WalletIcon';
+import {
+	DiscoverIcon,
+	ForumIcon,
+	GalleryIcon,
+	MenuIcon,
+	ProfileIcon,
+	WalletIcon,
+} from '@/components/assets/icons';
 import { NavigationRoutes } from '@/constants/navigation.routes.enum';
 import { AuthContext } from '@/context/auth.context';
 
@@ -74,7 +76,7 @@ export default function TabLayout() {
 				headerPressOpacity: 1,
 				headerRight: () => (
 					<TouchableOpacity className="px-4">
-						<MenuIcon testID="MenuIcon" />
+						<MenuIcon testID="menuIcon" />
 					</TouchableOpacity>
 				),
 			}}
@@ -84,7 +86,7 @@ export default function TabLayout() {
 				options={{
 					title: 'Forum',
 					tabBarIcon: () => (
-						<ForumIcon width={19} height={19} testID="ForumTabBarIcon" />
+						<ForumIcon width={19} height={19} testID="forumTabBarIcon" />
 					),
 					tabBarActiveTintColor: TabsColors.forum,
 				}}
@@ -95,7 +97,7 @@ export default function TabLayout() {
 				options={{
 					title: 'Discover',
 					tabBarIcon: () => (
-						<DiscoverIcon width={19} height={19} testID="DiscoverTabBarIcon" />
+						<DiscoverIcon width={19} height={19} testID="discoverTabBarIcon" />
 					),
 					tabBarActiveTintColor: TabsColors.discover,
 				}}
@@ -106,7 +108,7 @@ export default function TabLayout() {
 				options={{
 					title: 'Gallery',
 					tabBarIcon: () => (
-						<GalleryIcon width={19} height={19} testID="GalleryTabBarIcon" />
+						<GalleryIcon width={19} height={19} testID="galleryTabBarIcon" />
 					),
 					tabBarActiveTintColor: TabsColors.gallery,
 				}}
@@ -125,7 +127,7 @@ export default function TabLayout() {
 				options={{
 					title: 'Profile',
 					tabBarIcon: () => (
-						<ProfileIcon width={18} height={18} testID="ProfileTabBarIcon" />
+						<ProfileIcon width={18} height={18} testID="profileTabBarIcon" />
 					),
 					tabBarActiveTintColor: TabsColors.profile,
 				}}
@@ -144,7 +146,7 @@ export default function TabLayout() {
 				options={{
 					title: 'Wallet',
 					tabBarIcon: () => (
-						<WalletIcon width={19} height={19} testID="WalletTabBarIcon" />
+						<WalletIcon width={19} height={19} testID="walletTabBarIcon" />
 					),
 					tabBarActiveTintColor: TabsColors.wallet,
 				}}

@@ -6,10 +6,10 @@ const DiscoverScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="DiscoverScreen"
+				testID="discoverScreen"
 				className="flex-1 justify-center items-center bg-transparent"
 			>
-				<Text testID="DiscoverScreenText">Discover</Text>
+				<Text testID="discoverScreenText">Discover</Text>
 			</View>
 		</BackgroundWrapper>
 	);

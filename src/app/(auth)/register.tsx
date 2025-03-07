@@ -31,10 +31,10 @@ const RegisterScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="RegisterScreen"
+				testID="registerScreen"
 				className="flex justify-center items-center bg-white rounded-lg mt-36 mx-8 pb-10"
 			>
-				<Text className="text-2xl font-bold pt-4" testID="RegisterScreenTitle">
+				<Text className="text-2xl font-bold pt-4" testID="registerScreenTitle">
 					Register
 				</Text>
 				{registerInputs.map(
@@ -52,7 +52,7 @@ const RegisterScreen = () => {
 							key={name}
 							label={label}
 							placeholder={placeholder}
-							name={name}
+							name={name as keyof ISignUpRequest}
 							control={control}
 							secureTextEntry={secureTextEntry}
 							multiline={multiline}
@@ -67,7 +67,7 @@ const RegisterScreen = () => {
 					onPress={handleSubmit(onSubmit)}
 					label="Create account"
 					isLoading={isLoading}
-					testID="RegisterSubmitButton"
+					testID="registerSubmitButton"
 				/>
 			</View>
 		</BackgroundWrapper>

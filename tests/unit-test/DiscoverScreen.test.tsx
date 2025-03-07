@@ -6,8 +6,8 @@ describe('DiscoverScreen', () => {
 	test('Should render discover screen correctly', async () => {
 		const { findByTestId } = render(<DiscoverScreen />);
 
-		const screen = await findByTestId('DiscoverScreen');
-		const text = await findByTestId('DiscoverScreenText');
+		const screen = await findByTestId('discoverScreen');
+		const text = await findByTestId('discoverScreenText');
 
 		expect(screen).toBeTruthy();
 		expect(text).toBeTruthy();

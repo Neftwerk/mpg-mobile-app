@@ -30,13 +30,13 @@ const ConfirmUserScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="ConfirmUserScreen"
+				testID="confirmUserScreen"
 				className="flex top-1/4 justify-center items-center bg-white rounded-lg mx-8 pb-4"
 			>
 				<View className="flex justify-center items-center pb-10">
 					<Text
 						className="text-2xl font-bold pt-4"
-						testID="ConfirmUserScreenTitle"
+						testID="confirmUserScreenTitle"
 					>
 						Confirm User
 					</Text>
@@ -51,7 +51,7 @@ const ConfirmUserScreen = () => {
 							key={name}
 							label={label}
 							placeholder={placeholder}
-							name={name}
+							name={name as keyof IConfirmUserRequest}
 							control={control}
 							maxLength={maxLength}
 							testID={testID}
@@ -61,7 +61,7 @@ const ConfirmUserScreen = () => {
 				<SubmitButton
 					label="Confirm"
 					onPress={handleSubmit(onSubmit)}
-					testID="ConfirmUserSubmitButton"
+					testID="confirmUserSubmitButton"
 				/>
 			</View>
 		</BackgroundWrapper>

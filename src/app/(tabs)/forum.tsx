@@ -6,10 +6,10 @@ const ForumScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="ForumScreen"
+				testID="forumScreen"
 				className="flex-1 justify-center items-center bg-transparent"
 			>
-				<Text testID="ForumScreenText">Forum</Text>
+				<Text testID="forumScreenText">Forum</Text>
 			</View>
 		</BackgroundWrapper>
 	);

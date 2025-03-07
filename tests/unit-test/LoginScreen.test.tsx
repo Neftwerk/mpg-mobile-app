@@ -31,12 +31,12 @@ describe('LoginScreen', () => {
 	test('Should render login screen correctly', async () => {
 		const { findByTestId } = render(<LoginScreen />);
 
-		const screen = await findByTestId('LoginScreen');
-		const usernameInput = await findByTestId('LoginUsernameInput');
-		const passwordInput = await findByTestId('LoginPasswordInput');
-		const loginButton = await findByTestId('LoginSubmitButton');
-		const registerButton = await findByTestId('GoToRegisterButton');
-		const forgotPasswordButton = await findByTestId('GoToForgotPasswordButton');
+		const screen = await findByTestId('loginScreen');
+		const usernameInput = await findByTestId('loginUsernameInput');
+		const passwordInput = await findByTestId('loginPasswordInput');
+		const loginButton = await findByTestId('loginSubmitButton');
+		const registerButton = await findByTestId('goToRegisterButton');
+		const forgotPasswordButton = await findByTestId('goToForgotPasswordButton');
 
 		expect(screen).toBeTruthy();
 		expect(usernameInput).toBeTruthy();
@@ -49,9 +49,9 @@ describe('LoginScreen', () => {
 	test('Should navigate to register screen when register button is pressed', async () => {
 		const { findByTestId } = render(<LoginScreen />);
 
-		const registerButton = await findByTestId('GoToRegisterButton');
+		const registerButton = await findByTestId('goToRegisterButton');
 
-		await act(async () => {
+		act(() => {
 			fireEvent.press(registerButton);
 		});
 
@@ -61,9 +61,9 @@ describe('LoginScreen', () => {
 	test('Should navigate to forgot password screen when forgot password button is pressed', async () => {
 		const { findByTestId } = render(<LoginScreen />);
 
-		const forgotPasswordButton = await findByTestId('GoToForgotPasswordButton');
+		const forgotPasswordButton = await findByTestId('goToForgotPasswordButton');
 
-		await act(async () => {
+		act(() => {
 			fireEvent.press(forgotPasswordButton);
 		});
 
@@ -73,11 +73,11 @@ describe('LoginScreen', () => {
 	test('Should call sign in mutation when form is submitted', async () => {
 		const { findByTestId } = render(<LoginScreen />);
 
-		const usernameInput = await findByTestId('LoginUsernameInput');
-		const passwordInput = await findByTestId('LoginPasswordInput');
-		const loginButton = await findByTestId('LoginSubmitButton');
+		const usernameInput = await findByTestId('loginUsernameInput');
+		const passwordInput = await findByTestId('loginPasswordInput');
+		const loginButton = await findByTestId('loginSubmitButton');
 
-		await act(async () => {
+		act(() => {
 			fireEvent.changeText(usernameInput, 'test@example.com');
 			fireEvent.changeText(passwordInput, 'password123');
 			fireEvent.press(loginButton);

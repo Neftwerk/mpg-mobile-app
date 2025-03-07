@@ -33,7 +33,7 @@ describe('ConfirmUserScreen', () => {
 			<ConfirmUserScreen />,
 		);
 
-		const screen = await findByTestId('ConfirmUserScreen');
+		const screen = await findByTestId('confirmUserScreen');
 		const emailInput = await findByPlaceholderText('Enter your email');
 		const codeInput = await findByPlaceholderText('Enter your code');
 		const confirmButton = await findByText('Confirm User');
@@ -50,7 +50,7 @@ describe('ConfirmUserScreen', () => {
 		const codeInput = await findByPlaceholderText('Enter your code');
 		const confirmButton = await findByText('Confirm');
 
-		await act(async () => {
+		act(() => {
 			fireEvent.changeText(codeInput, '123456');
 			fireEvent.press(confirmButton);
 		});

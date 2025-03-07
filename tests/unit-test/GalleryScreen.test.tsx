@@ -56,8 +56,8 @@ describe('GalleryScreen', () => {
 			</AuthContext.Provider>,
 		);
 
-		const screen = await findByTestId('GalleryScreen');
-		const text = await findByTestId('GalleryScreenText');
+		const screen = await findByTestId('galleryScreen');
+		const text = await findByTestId('galleryScreenText');
 
 		expect(screen).toBeTruthy();
 		expect(text).toBeTruthy();

@@ -30,12 +30,12 @@ const ConfirmPasswordScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="ConfirmPasswordScreen"
+				testID="confirmPasswordScreen"
 				className="flex top-1/4 justify-center items-center bg-white mx-8 pb-4 rounded-lg"
 			>
 				<Text
 					className="text-2xl font-bold pt-4"
-					testID="ConfirmPasswordScreenTitle"
+					testID="confirmPasswordScreenTitle"
 				>
 					Confirm Password
 				</Text>
@@ -55,7 +55,7 @@ const ConfirmPasswordScreen = () => {
 							key={name}
 							label={label}
 							placeholder={placeholder}
-							name={name}
+							name={name as keyof IConfirmPasswordRequest}
 							control={control}
 							maxLength={maxLength}
 							secureTextEntry={secureTextEntry}
@@ -66,7 +66,7 @@ const ConfirmPasswordScreen = () => {
 				<SubmitButton
 					label="Change Password"
 					onPress={handleSubmit(onSubmit)}
-					testID="ConfirmPasswordSubmitButton"
+					testID="confirmPasswordSubmitButton"
 				/>
 			</View>
 		</BackgroundWrapper>

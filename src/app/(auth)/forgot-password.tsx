@@ -24,12 +24,12 @@ const ForgotPasswordScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="ForgotPasswordScreen"
+				testID="forgotPasswordScreen"
 				className="flex top-1/4 justify-center items-center bg-white mx-8 pb-4 rounded-lg"
 			>
 				<Text
 					className="text-2xl font-bold pt-4"
-					testID="ForgotPasswordScreenTitle"
+					testID="forgotPasswordScreenTitle"
 				>
 					Forgot Password
 				</Text>
@@ -38,13 +38,13 @@ const ForgotPasswordScreen = () => {
 					placeholder="Enter your email"
 					name="username"
 					control={control}
-					testID="ForgotPasswordUsernameInput"
+					testID="forgotPasswordUsernameInput"
 				/>
 
 				<SubmitButton
 					label="Send Code"
 					onPress={handleSubmit(onSubmit)}
-					testID="ForgotPasswordSubmitButton"
+					testID="forgotPasswordSubmitButton"
 				/>
 			</View>
 		</BackgroundWrapper>

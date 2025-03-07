@@ -30,10 +30,10 @@ const LoginScreen = () => {
 	return (
 		<BackgroundWrapper>
 			<View
-				testID="LoginScreen"
+				testID="loginScreen"
 				className="flex top-1/4 justify-center items-center bg-white mx-8 pb-4 rounded-lg"
 			>
-				<Text className="text-2xl font-bold pt-4" testID="LoginScreenTitle">
+				<Text className="text-2xl font-bold pt-4" testID="loginScreenTitle">
 					Login
 				</Text>
 
@@ -50,7 +50,7 @@ const LoginScreen = () => {
 							key={name}
 							label={label}
 							placeholder={placeholder}
-							name={name as 'username' | 'password'}
+							name={name as keyof ISignInRequest}
 							control={control}
 							secureTextEntry={secureTextEntry}
 							keyboardType={keyboardType as KeyboardTypeOptions}
@@ -61,7 +61,7 @@ const LoginScreen = () => {
 
 				<SubmitButton
 					label="Login"
-					testID="LoginSubmitButton"
+					testID="loginSubmitButton"
 					onPress={handleSubmit(onSubmit)}
 				/>
 
@@ -69,13 +69,13 @@ const LoginScreen = () => {
 					<GoToScreenButton
 						label="Register"
 						route={NavigationRoutes.SIGNUP as Href}
-						testID="GoToRegisterButton"
+						testID="goToRegisterButton"
 						className="pl-8"
 					/>
 					<GoToScreenButton
 						label="Forgot password?"
 						route={NavigationRoutes.FORGOT_PASSWORD as Href}
-						testID="GoToForgotPasswordButton"
+						testID="goToForgotPasswordButton"
 						className="pr-8"
 					/>
 				</View>
