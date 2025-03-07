@@ -1,12 +1,13 @@
 import { ApiRequestConfig, apiService } from '../api.services';
 
+import { ISignUpRequest } from '@/interfaces/api/api';
+import { IRefreshSessionResponse } from '@/interfaces/auth/IRefreshSessionResponse';
 import { ISignInResponse } from '@/interfaces/auth/ISignInResponse';
 import { ISignUpResponse } from '@/interfaces/auth/ISignUpResponse';
 import { ISuccessfulAuthenticationResponse } from '@/interfaces/auth/ISuccessfulAuthenticationResponse';
-import { IUser } from '@/interfaces/entities/user';
 import { IApiService } from '@/interfaces/services/IApiService';
 import { IAuthService } from '@/interfaces/services/IAuthService';
-import { IRefreshSessionResponse } from '@/types/api.types';
+import { IBaseApiResponse } from '@/types/api.types';
 
 class AuthService implements IAuthService {
 	api: IApiService<ApiRequestConfig>;
@@ -14,24 +15,23 @@ class AuthService implements IAuthService {
 		this.api = api;
 	}
 	async signIn(username: string, password: string, config?: ApiRequestConfig) {
-		return await this.api.post<ISignInResponse>(
+		return await this.api.post<IBaseApiResponse<ISignInResponse>>(
 			'/auth/sign-in',
 			{ username, password },
 			config,
 		);
 	}
-	async signUp(username: string, password: string) {
-		return await this.api.post<ISignUpResponse>('/auth/sign-up', {
-			username,
-			password,
-		});
-	}
-	async confirmUser(username: string, code: string, config?: ApiRequestConfig) {
-		return await this.api.post<ISuccessfulAuthenticationResponse>(
-			'/auth/confirm-user',
-			{ username, code },
+	async signUp(signUpData: ISignUpRequest, config?: ApiRequestConfig) {
+		return await this.api.post<IBaseApiResponse<ISignUpResponse>>(
+			'/auth/sign-up',
+			signUpData,
 			config,
 		);
+	}
+	async confirmUser(username: string, code: string, config?: ApiRequestConfig) {
+		return await this.api.post<
+			IBaseApiResponse<ISuccessfulAuthenticationResponse>
+		>('/auth/confirm-user', { username, code }, config);
 	}
 	async confirmPassword(
 		username: string,
@@ -39,40 +39,33 @@ class AuthService implements IAuthService {
 		code: string,
 		config?: ApiRequestConfig,
 	) {
-		return await this.api.post<ISuccessfulAuthenticationResponse>(
-			'/auth/confirm-password',
-			{ username, newPassword, code },
-			config,
-		);
+		return await this.api.post<
+			IBaseApiResponse<ISuccessfulAuthenticationResponse>
+		>('/auth/confirm-password', { username, newPassword, code }, config);
 	}
 	async resendConfirmationCode(username: string, config?: ApiRequestConfig) {
-		return await this.api.post<ISuccessfulAuthenticationResponse>(
-			'/auth/resend-confirmation-code',
-			{ username },
-			config,
-		);
+		return await this.api.post<
+			IBaseApiResponse<ISuccessfulAuthenticationResponse>
+		>('/auth/resend-confirmation-code', { username }, config);
 	}
 	async forgotPassword(username: string, config?: ApiRequestConfig) {
-		return await this.api.post<ISuccessfulAuthenticationResponse>(
-			'/auth/forgot-password',
-			{ username },
-			config,
-		);
+		return await this.api.post<
+			IBaseApiResponse<ISuccessfulAuthenticationResponse>
+		>('/auth/forgot-password', { username }, config);
 	}
-	async refreshToken(
-		username: string,
-		refreshToken: string,
-		config?: ApiRequestConfig,
-	) {
-		return await this.api.post<IRefreshSessionResponse>(
+	async refreshToken(refreshToken: string, config?: ApiRequestConfig) {
+		return await this.api.post<IBaseApiResponse<IRefreshSessionResponse>>(
 			'/auth/refresh',
-			{ username, refreshToken },
+			{ refreshToken },
 			config,
 		);
 	}
 
 	async getMe(config?: ApiRequestConfig) {
-		return await this.api.get<IUser>('/user/me', config);
+		return await this.api.get<IBaseApiResponse<ISignUpResponse>>(
+			'/user/me',
+			config,
+		);
 	}
 }
 
