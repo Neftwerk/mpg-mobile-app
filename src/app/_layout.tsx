@@ -9,6 +9,7 @@ import '../../global.css';
 
 import { BackgroundWrapper } from '@/components/BackgroundWrapper/BackgroundWrapper';
 import { Sentry, navigationIntegration } from '@/config/sentry-config';
+import { AuthProvider } from '@/context/auth.provider';
 import { QueryClientProvider } from '@/providers/QueryClientProvider';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -40,28 +41,37 @@ function RootLayout() {
 	return (
 		<QueryClientProvider>
 			<SafeAreaProvider>
-				<BackgroundWrapper>
-					<Stack
-						screenOptions={{
-							contentStyle: {
-								backgroundColor: 'transparent',
-							},
-						}}
-					>
-						<Stack.Screen
-							name="index"
-							options={{
-								title: 'My Pocket Gallery',
+				<AuthProvider>
+					<BackgroundWrapper>
+						<Stack
+							screenOptions={{
+								contentStyle: {
+									backgroundColor: 'transparent',
+								},
 							}}
-						/>
-						<Stack.Screen
-							name="(tabs)"
-							options={{
-								headerShown: false,
-							}}
-						/>
-					</Stack>
-				</BackgroundWrapper>
+						>
+							<Stack.Screen
+								name="index"
+								options={{
+									title: 'My Pocket Gallery',
+									headerBackVisible: false,
+								}}
+							/>
+							<Stack.Screen
+								name="(tabs)"
+								options={{
+									headerShown: false,
+								}}
+							/>
+							<Stack.Screen
+								name="(auth)"
+								options={{
+									headerShown: false,
+								}}
+							/>
+						</Stack>
+					</BackgroundWrapper>
+				</AuthProvider>
 			</SafeAreaProvider>
 		</QueryClientProvider>
 	);
