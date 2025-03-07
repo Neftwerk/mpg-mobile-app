@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import Constants from 'expo-constants';
 
 import { createErrorHandler } from './error-handler-config';
 
@@ -7,7 +6,7 @@ import { IHTTPRequestService } from '@/interfaces/IHTTPRequestService';
 import tokenStorage from '@/services/storage/token-storage';
 
 export const axiosInstance = axios.create({
-	baseURL: Constants.expoConfig?.extra?.API_URL,
+	baseURL: process.env.EXPO_PUBLIC_API_URL,
 });
 
 axiosInstance.interceptors.response.use(
