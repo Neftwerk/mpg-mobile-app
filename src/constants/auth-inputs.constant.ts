@@ -5,21 +5,21 @@ export const confirmPasswordInputs = [
 		label: 'Email',
 		placeholder: 'Enter your email',
 		name: 'username',
-		testID: 'ConfirmPasswordUsernameInput',
+		testID: 'confirmPasswordUsernameInput',
 	},
 	{
 		label: 'New Password',
 		placeholder: 'Enter your new password',
 		name: 'newPassword',
 		secureTextEntry: true,
-		testID: 'ConfirmPasswordNewPasswordInput',
+		testID: 'confirmPasswordNewPasswordInput',
 	},
 	{
 		label: 'Code',
 		placeholder: 'Enter the code',
 		name: 'code',
 		maxLength: 6,
-		testID: 'ConfirmPasswordCodeInput',
+		testID: 'confirmPasswordCodeInput',
 	},
 ];
 
@@ -28,14 +28,14 @@ export const confirmUserInputs = [
 		label: 'Email',
 		placeholder: 'Enter your email',
 		name: 'username',
-		testID: 'ConfirmUserUsernameInput',
+		testID: 'confirmUserUsernameInput',
 	},
 	{
 		label: 'Code',
 		placeholder: 'Enter your code',
 		name: 'code',
 		maxLength: 6,
-		testID: 'ConfirmUserCodeInput',
+		testID: 'confirmUserCodeInput',
 	},
 ];
 
@@ -45,14 +45,14 @@ export const loginInputs = [
 		placeholder: 'Enter your email',
 		name: 'username',
 		keyboardType: 'email-address',
-		testID: 'LoginUsernameInput',
+		testID: 'loginUsernameInput',
 	},
 	{
 		label: 'Password',
 		placeholder: 'Enter your password',
 		name: 'password',
 		secureTextEntry: true,
-		testID: 'LoginPasswordInput',
+		testID: 'loginPasswordInput',
 	},
 ];
 
@@ -62,26 +62,26 @@ export const registerInputs = [
 		placeholder: 'Enter your email',
 		name: 'username',
 		keyboardType: 'email-address',
-		testID: 'RegisterUsernameInput',
+		testID: 'registerUsernameInput',
 	},
 	{
 		label: 'Password',
 		placeholder: 'Enter your password',
 		name: 'password',
 		secureTextEntry: true,
-		testID: 'RegisterPasswordInput',
+		testID: 'registerPasswordInput',
 	},
 	{
 		label: 'Name',
 		placeholder: 'Enter your name',
 		name: 'name',
-		testID: 'RegisterNameInput',
+		testID: 'registerNameInput',
 	},
 	{
 		label: 'Surname',
 		placeholder: 'Enter your surname',
 		name: 'surname',
-		testID: 'RegisterSurnameInput',
+		testID: 'registerSurnameInput',
 	},
 	{
 		label: 'Biography',
@@ -90,7 +90,7 @@ export const registerInputs = [
 		multiline: true,
 		maxLength: 255,
 		numberOfLines: 4,
-		testID: 'RegisterBiographyInput',
+		testID: 'registerBiographyInput',
 	},
 ];
 
