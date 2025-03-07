@@ -33,7 +33,7 @@ describe('ConfirmPasswordScreen', () => {
 			<ConfirmPasswordScreen />,
 		);
 
-		const screen = await findByTestId('ConfirmPasswordScreen');
+		const screen = await findByTestId('confirmPasswordScreen');
 		const emailInput = await findByPlaceholderText('Enter your email');
 		const passwordInput = await findByPlaceholderText(
 			'Enter your new password',
@@ -59,15 +59,15 @@ describe('ConfirmPasswordScreen', () => {
 		const codeInput = await findByPlaceholderText('Enter the code');
 		const submitButton = await findByText('Change Password');
 
-		act(() => {
-			fireEvent.changeText(passwordInput, 'newpassword123');
+		await act(() => {
+			fireEvent.changeText(passwordInput, 'Newpassword123.');
 			fireEvent.changeText(codeInput, '123456');
 			fireEvent.press(submitButton);
 		});
 
 		expect(mockConfirmPasswordMutation.mutate).toHaveBeenCalledWith({
 			username: 'test@example.com',
-			newPassword: 'newpassword123',
+			newPassword: 'Newpassword123.',
 			code: '123456',
 		});
 	});

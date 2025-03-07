@@ -51,7 +51,7 @@ describe('LoginScreen', () => {
 
 		const registerButton = await findByTestId('goToRegisterButton');
 
-		act(() => {
+		await act(() => {
 			fireEvent.press(registerButton);
 		});
 
@@ -63,7 +63,7 @@ describe('LoginScreen', () => {
 
 		const forgotPasswordButton = await findByTestId('goToForgotPasswordButton');
 
-		act(() => {
+		await act(() => {
 			fireEvent.press(forgotPasswordButton);
 		});
 
@@ -77,15 +77,15 @@ describe('LoginScreen', () => {
 		const passwordInput = await findByTestId('loginPasswordInput');
 		const loginButton = await findByTestId('loginSubmitButton');
 
-		act(() => {
+		await act(() => {
 			fireEvent.changeText(usernameInput, 'test@example.com');
-			fireEvent.changeText(passwordInput, 'password123');
+			fireEvent.changeText(passwordInput, 'Password123.');
 			fireEvent.press(loginButton);
 		});
 
 		expect(mockSignInMutation.mutate).toHaveBeenCalledWith({
 			username: 'test@example.com',
-			password: 'password123',
+			password: 'Password123.',
 		});
 	});
 });

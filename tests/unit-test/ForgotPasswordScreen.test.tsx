@@ -38,7 +38,7 @@ describe('ForgotPasswordScreen', () => {
 		const usernameInput = await findByTestId('forgotPasswordUsernameInput');
 		const sendButton = await findByText('Send Code');
 
-		act(() => {
+		await act(() => {
 			fireEvent.changeText(usernameInput, 'test@example.com');
 			fireEvent.press(sendButton);
 		});
