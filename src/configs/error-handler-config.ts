@@ -1,33 +1,34 @@
 import axios, { AxiosError, AxiosInstance, HttpStatusCode } from 'axios';
-import { getLocalStorageItem } from 'utils/storage/getLocalStorageItem';
 
 import { TOKEN_EXPIRED_ERROR } from '@/constants/errors';
 import { ApiResponseError } from '@/errors/ApiResonseError';
+import { IBaseApiResponseError } from '@/interfaces/api/IApiResponseError';
 import tokenStorage from '@/services/storage/token-storage';
-import { IApiResponseError, IRefreshSessionResponse } from '@/types/api.types';
+import { IBaseApiResponse, IRefreshSessionResponse } from '@/types/api.types';
 
 export function createErrorHandler(instance: AxiosInstance) {
 	return async function handleAxiosError(
-		error: Error | AxiosError<IApiResponseError>,
+		error: Error | AxiosError<IBaseApiResponseError>,
 	) {
-		if (!axios.isAxiosError<IApiResponseError>(error) || !error.response) {
+		if (!axios.isAxiosError<IBaseApiResponseError>(error) || !error.response) {
 			return Promise.reject(error);
 		}
 
 		const originalRequest = error.config;
 		const shouldRefresh =
 			error.response.status === HttpStatusCode.Unauthorized &&
-			error.response.data.error === TOKEN_EXPIRED_ERROR;
+			error.response.data.error.title === TOKEN_EXPIRED_ERROR;
 
 		if (shouldRefresh && originalRequest) {
 			const refreshToken = await tokenStorage.getRefreshToken();
-			const username = await getLocalStorageItem('username');
-			const refreshResponse = await instance.post<IRefreshSessionResponse>(
-				'/auth/refresh',
-				{ username, refreshToken },
+			const refreshResponse = await instance.post<
+				IBaseApiResponse<IRefreshSessionResponse>
+			>('/auth/refresh', { refreshToken });
+
+			await tokenStorage.setAccessToken(
+				refreshResponse.data.data.attributes.accessToken,
 			);
-			await tokenStorage.setAccessToken(refreshResponse.data.accessToken);
-			const authorization = `Bearer ${refreshResponse.data.accessToken}`;
+			const authorization = `Bearer ${refreshResponse.data.data.attributes.accessToken}`;
 			instance.defaults.headers.common['Authorization'] = authorization;
 			originalRequest.headers.Authorization = authorization;
 			return instance(originalRequest);
@@ -35,9 +36,9 @@ export function createErrorHandler(instance: AxiosInstance) {
 
 		return Promise.reject(
 			new ApiResponseError(
-				error.response.data.error,
-				error.response.data.message,
-				error.response.data.statusCode,
+				error.response.data.error.detail,
+				error.response.data.error.source.pointer,
+				+error.response.data.error.status,
 			),
 		);
 	};
