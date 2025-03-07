@@ -35,8 +35,7 @@ export function AuthProvider({
 			} else {
 				clearAuthState();
 			}
-		} catch (error) {
-			console.error('Error en handleTokenRefresh:', error);
+		} catch {
 			clearAuthState();
 		}
 	}, [clearAuthState]);

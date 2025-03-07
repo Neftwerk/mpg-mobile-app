@@ -41,7 +41,6 @@ export function useAuth() {
 			router.replace(NavigationRoutes.HOME);
 		},
 		onError: (error: IBaseApiResponseError) => {
-			console.error('ERROR:: ', JSON.stringify(error, null, 2));
 			if (error instanceof AxiosError) {
 				Alert.alert(String(error.response?.data.message));
 			} else if (error instanceof Error) {
@@ -66,8 +65,6 @@ export function useAuth() {
 			});
 		},
 		onError: (error: IBaseApiResponseError) => {
-			console.error({ error });
-			console.error('ERROR:: ', JSON.stringify(error.error, null, 2));
 			Alert.alert(String(error.error.title), String(error.error.detail));
 		},
 	});
@@ -83,7 +80,6 @@ export function useAuth() {
 			}
 		},
 		onError: (error: IBaseApiResponseError) => {
-			console.error('ERROR:: ', JSON.stringify(error.error, null, 2));
 			Alert.alert(String(error.error.title), String(error.error.detail));
 		},
 	});
@@ -102,7 +98,6 @@ export function useAuth() {
 			}
 		},
 		onError: (error: IBaseApiResponseError) => {
-			console.error('ERROR:: ', JSON.stringify(error.error, null, 2));
 			Alert.alert(String(error.error.title), String(error.error.detail));
 		},
 	});
@@ -124,7 +119,6 @@ export function useAuth() {
 			}
 		},
 		onError: (error: IBaseApiResponseError) => {
-			console.error('ERROR:: ', JSON.stringify(error.error, null, 2));
 			Alert.alert(String(error.error.title), String(error.error.detail));
 		},
 	});
@@ -141,7 +135,6 @@ export function useAuth() {
 			}
 		},
 		onError: (error: IBaseApiResponseError) => {
-			console.error('ERROR:: ', JSON.stringify(error.error, null, 2));
 			Alert.alert(String(error.error.title), String(error.error.detail));
 		},
 	});
