@@ -1,11 +1,11 @@
 import { expect } from 'detox';
 
 const hexagonButtonIds = [
-	'ForumContainerButton',
-	'GalleryContainerButton',
-	'DiscoverContainerButton',
-	'WalletContainerButton',
-	'ProfileContainerButton',
+	'forumContainerButton',
+	'galleryContainerButton',
+	'discoverContainerButton',
+	'walletContainerButton',
+	'profileContainerButton',
 ];
 
 describe('Home Screen', () => {
@@ -34,45 +34,77 @@ describe('Home Screen', () => {
 			}
 		});
 
-		it('Should navigate to Profile when Profile button is pressed', async () => {
-			await waitFor(element(by.id('ProfileContainerButton')))
+		it('Should navigate to Login Page if the Profile is pressed without being logged in', async () => {
+			await waitFor(element(by.id('profileContainerButton')))
 				.toExist()
 				.withTimeout(5000);
 
-			await element(by.id('ProfileContainerButton')).tap();
-			await waitFor(element(by.id('ProfileScreenText')))
+			await element(by.id('profileContainerButton')).tap();
+			await waitFor(element(by.id('loginScreenTitle')))
 				.toBeVisible()
 				.withTimeout(4000);
 		});
 
-		it('Should navigate to Wallet when Wallet button is pressed', async () => {
-			await waitFor(element(by.id('WalletContainerButton')))
+		it('Should navigate to Login Page if the Wallet button is pressed without being logged in', async () => {
+			await waitFor(element(by.id('walletContainerButton')))
 				.toExist()
 				.withTimeout(5000);
-			await element(by.id('WalletContainerButton')).tap();
-			await expect(element(by.id('WalletScreenText'))).toBeVisible();
+			await element(by.id('walletContainerButton')).tap();
+			await waitFor(element(by.id('loginScreenTitle')))
+				.toBeVisible()
+				.withTimeout(4000);
+		});
+
+		it('Should navigate to Login Page if the Gallery button is pressed without being logged in', async () => {
+			await waitFor(element(by.id('galleryContainerButton')))
+				.toExist()
+				.withTimeout(5000);
+			await element(by.id('galleryContainerButton')).tap();
+			await waitFor(element(by.id('loginScreenTitle')))
+				.toBeVisible()
+				.withTimeout(4000);
+		});
+
+		it('Should navigate to Forum Page if the Forum button is pressed', async () => {
+			await waitFor(element(by.id('forumContainerButton')))
+				.toExist()
+				.withTimeout(5000);
+			await element(by.id('forumContainerButton')).tap();
+			await waitFor(element(by.id('forumScreenText')))
+				.toBeVisible()
+				.withTimeout(3000);
+		});
+
+		it('Should navigate to Discover Page if the Discover button is pressed', async () => {
+			await waitFor(element(by.id('discoverContainerButton')))
+				.toExist()
+				.withTimeout(5000);
+			await element(by.id('discoverContainerButton')).tap();
+			await waitFor(element(by.id('discoverScreenText')))
+				.toBeVisible()
+				.withTimeout(3000);
 		});
 	});
 
 	describe('Navigation', () => {
 		beforeEach(async () => {
-			await waitFor(element(by.id('WalletContainerButton')))
+			await waitFor(element(by.id('forumContainerButton')))
 				.toExist()
 				.withTimeout(5000);
-			await element(by.id('WalletContainerButton')).tap();
+			await element(by.id('forumContainerButton')).tap();
 		});
 
 		it('Should show back button when navigating to a new screen', async () => {
-			await expect(element(by.id('GoBackButton'))).toBeVisible();
+			await expect(element(by.id('goBackButton'))).toBeVisible();
 		});
 
 		it('Should navigate back to home screen when back button is pressed', async () => {
-			await element(by.id('GoBackButton')).tap();
+			await element(by.id('goBackButton')).tap();
 			await expect(element(by.label('My Pocket Gallery'))).toBeVisible();
 		});
 
 		it('Should show menu icon in header', async () => {
-			await expect(element(by.id('MenuIcon'))).toBeVisible();
+			await expect(element(by.id('menuIcon'))).toBeVisible();
 		});
 	});
 });

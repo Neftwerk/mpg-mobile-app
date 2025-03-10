@@ -6,11 +6,15 @@ export interface IApiResponseError {
 
 export interface IRefreshSessionResponse {
 	accessToken: string;
-	refreshToken: string;
 }
 
-export interface IApiResponse<T> {
-	data: T;
-	message?: string;
-	statusCode: number;
+export interface IBaseApiResponse<T> {
+	data: {
+		type: string;
+		id?: number;
+		attributes: T;
+	};
+	links: {
+		self: string;
+	};
 }

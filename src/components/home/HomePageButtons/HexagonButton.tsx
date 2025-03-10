@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View } from 'react-native';
 
 import { HexagonContainer } from './HexagonContainer';
 
-interface HexagonCardProps {
+interface IHexagonCardProps {
 	icon: ({
 		width,
 		height,
@@ -18,7 +18,7 @@ interface HexagonCardProps {
 	testId?: string;
 }
 
-export const HexagonButton: React.FC<HexagonCardProps> = ({
+export const HexagonButton: React.FC<IHexagonCardProps> = ({
 	icon,
 	label,
 	width,

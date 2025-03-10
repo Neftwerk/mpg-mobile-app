@@ -2,7 +2,11 @@ import { ImageBackground } from 'react-native';
 
 import { arrowBackIcon } from '../index';
 
-export const ArrowBackIcon = ({ testID }: { testID?: string }) => {
+interface IArrowBackIconProps {
+	testID?: string;
+}
+
+export const ArrowBackIcon = ({ testID }: IArrowBackIconProps) => {
 	return (
 		<ImageBackground
 			testID={testID}

@@ -11,18 +11,21 @@ export const HOME_BUTTONS = [
 		label: 'Forum',
 		icon: ForumIcon,
 		className: 'absolute top-[179.28px] left-[98px] h-[128.66px] w-[111px]',
+		route: NavigationRoutes.FORUM,
 		testId: 'ForumContainer',
 	},
 	{
 		label: 'Gallery',
 		icon: GalleryIcon,
 		className: 'absolute top-[285px] left-[37.11px] h-[128.66px] w-[111px]',
+		route: NavigationRoutes.GALLERY,
 		testId: 'GalleryContainer',
 	},
 	{
 		label: 'Discover',
 		icon: DiscoverIcon,
 		className: 'absolute top-[285px] left-[157px] h-[128.66px] w-[111px]',
+		route: NavigationRoutes.DISCOVER,
 		testId: 'DiscoverContainer',
 	},
 	{

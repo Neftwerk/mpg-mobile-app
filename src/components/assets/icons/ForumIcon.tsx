@@ -1,14 +1,16 @@
 import Svg, { Path } from 'react-native-svg';
 
+interface IForumIconProps {
+	width?: number;
+	height?: number;
+	testID?: string;
+}
+
 export const ForumIcon = ({
 	width = 26,
 	height = 25,
 	testID,
-}: {
-	width?: number;
-	height?: number;
-	testID?: string;
-}) => {
+}: IForumIconProps) => {
 	return (
 		<Svg
 			width={width}

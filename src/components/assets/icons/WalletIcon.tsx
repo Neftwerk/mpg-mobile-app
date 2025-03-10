@@ -2,15 +2,17 @@ import { ImageBackground } from 'react-native';
 
 import { walletIcon } from '../index';
 
+interface IWalletIconProps {
+	width?: number;
+	height?: number;
+	testID?: string;
+}
+
 export const WalletIcon = ({
 	width = 31,
 	height = 30,
 	testID,
-}: {
-	width?: number;
-	height?: number;
-	testID?: string;
-}) => {
+}: IWalletIconProps) => {
 	return (
 		<ImageBackground
 			source={walletIcon}

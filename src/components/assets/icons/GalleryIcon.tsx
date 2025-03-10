@@ -2,15 +2,17 @@ import { ImageBackground } from 'react-native';
 
 import { galleryIcon } from '../index';
 
+interface IGalleryIconProps {
+	width?: number;
+	height?: number;
+	testID?: string;
+}
+
 export const GalleryIcon = ({
 	width = 31,
 	height = 27,
 	testID,
-}: {
-	width?: number;
-	height?: number;
-	testID?: string;
-}) => {
+}: IGalleryIconProps) => {
 	return (
 		<ImageBackground
 			source={galleryIcon}
