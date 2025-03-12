@@ -11,8 +11,7 @@ const setSecureStorageItem = async (
 		await SecureStore.setItemAsync(serviceIdentifier, secretKey, {
 			keychainService,
 		});
-	} catch (error) {
-		console.error(error);
+	} catch {
 		throw new Error(ERROR_MESSAGES.STORING_KEYPAIR);
 	}
 };
