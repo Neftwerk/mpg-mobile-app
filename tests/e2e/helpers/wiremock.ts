@@ -18,6 +18,9 @@ export const wiremock = {
 					'auth-POST-reset-password.json',
 					'auth-POST-refresh-session.json',
 					'user-GET-me.json',
+					'user-POST-create-wallet.json',
+					'submission-POST-submission.json',
+					'user-PATCH-me-wallet.json',
 				],
 			}),
 		});
