@@ -58,12 +58,14 @@
 		"@react-native-async-storage/async-storage": "^2.1.1",
 		"@react-navigation/native": "^6.0.2",
 		"@sentry/react-native": "^6.6.0",
+		"@stellar/stellar-sdk": "^13.1.0",
 		"@tanstack/react-query": "^5.65.1",
 		"axios": "^1.7.9",
 		"cross-env": "^7.0.3",
 		"detox": "^20.32.0",
 		"expo": "~52.0.27",
 		"expo-constants": "~17.0.5",
+		"expo-crypto": "~14.0.2",
 		"expo-font": "~13.0.3",
 		"expo-linking": "~7.0.5",
 		"expo-router": "~4.0.17",
@@ -84,7 +86,8 @@
 		"react-native-svg": "15.8.0",
 		"react-native-web": "~0.19.10",
 		"wiremock-captain": "^3.6.0",
-		"yup": "^1.6.1"
+		"yup": "^1.6.1",
+		"expo-secure-store": "~14.0.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.20.0",
