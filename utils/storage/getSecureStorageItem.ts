@@ -7,7 +7,7 @@ const getSecureStorageItem = async (keyIdentifier: string): Promise<string> => {
 			keychainService,
 		});
 
-		if (secretKey == null) {
+		if (!secretKey) {
 			throw new Error(
 				'Error getting secret key: No credentials found for identifier',
 			);
