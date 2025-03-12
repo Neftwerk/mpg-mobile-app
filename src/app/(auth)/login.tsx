@@ -4,17 +4,19 @@ import { useForm } from 'react-hook-form';
 import { KeyboardTypeOptions, Text, View } from 'react-native';
 
 import { BackgroundWrapper } from '@/components/BackgroundWrapper/BackgroundWrapper';
+import { CustomModal } from '@/components/CustomModal/CustomModal';
 import { CustomInput } from '@/components/Form/CustomInput/CustomInput';
 import { SubmitButton } from '@/components/Form/SubmitButton/SubmitButton';
 import { GoToScreenButton } from '@/components/GoToScreenButton/GoToScreenButton';
 import { loginInputs } from '@/constants/auth-inputs.constant';
+import { FIRST_LOGIN_MODAL } from '@/constants/first-login-modal.constant';
 import { NavigationRoutes } from '@/constants/navigation.routes.enum';
 import { useAuth } from '@/hooks/useAuthApi';
 import { ISignInRequest } from '@/interfaces/api/api';
 import { loginSchema } from '@/validation/schema/auth.schema';
 
 const LoginScreen = () => {
-	const { signInMutation } = useAuth();
+	const { signInMutation, isLoading } = useAuth();
 	const defaultValues: ISignInRequest = {
 		username: '',
 		password: '',
@@ -63,6 +65,7 @@ const LoginScreen = () => {
 					label="Login"
 					testID="loginSubmitButton"
 					onPress={handleSubmit(onSubmit)}
+					isLoading={isLoading.signIn}
 				/>
 
 				<View className="flex w-full flex-row justify-between items-center mt-8">
@@ -80,6 +83,14 @@ const LoginScreen = () => {
 					/>
 				</View>
 			</View>
+
+			<CustomModal
+				visible={isLoading.firstLogin}
+				title={FIRST_LOGIN_MODAL.TITLE}
+				message={FIRST_LOGIN_MODAL.MESSAGE}
+				showLoading={true}
+				testID={FIRST_LOGIN_MODAL.TEST_ID}
+			/>
 		</BackgroundWrapper>
 	);
 };
