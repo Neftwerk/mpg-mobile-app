@@ -75,7 +75,7 @@ export default function TabLayout() {
 				},
 				headerPressOpacity: 1,
 				headerRight: () => (
-					<TouchableOpacity className="px-4" onPress={() => logout()}>
+					<TouchableOpacity className="px-4" onPress={logout}>
 						<MenuIcon testID="menuIcon" />
 					</TouchableOpacity>
 				),
