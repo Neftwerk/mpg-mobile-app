@@ -1,0 +1,30 @@
+{
+	"request": {
+		"method": "POST",
+		"url": "/api/v1/submission",
+		"headers": {
+			"Authorization": {
+				"matches": "Bearer (.*)"
+			}
+		}
+	},
+	"response": {
+		"status": 200,
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"jsonBody": {
+			"data": {
+				"type": "submission",
+				"id": "1",
+				"attributes": {
+					"hash": "1234567890",
+					"successful": true
+				}
+			},
+			"links": {
+				"self": "http://localhost:5001/api/v1/submission"
+			}
+		}
+	}
+}

@@ -53,6 +53,26 @@ describe('Login Screen', () => {
 		});
 	});
 
+	describe('Navigation', () => {
+		it('Should navigate to forgot password screen', async () => {
+			await expect(element(by.id('goToForgotPasswordButton'))).toBeVisible();
+			await element(by.id('goToForgotPasswordButton')).tap();
+			await expect(element(by.id('forgotPasswordScreenTitle'))).toBeVisible();
+		});
+
+		it('Should navigate to register screen', async () => {
+			await expect(element(by.id('goToRegisterButton'))).toBeVisible();
+			await element(by.id('goToRegisterButton')).tap();
+			await expect(element(by.id('registerScreenTitle'))).toBeVisible();
+		});
+
+		it('Should show back button and navigate back', async () => {
+			await expect(element(by.id('goBackButton'))).toBeVisible();
+			await element(by.id('goBackButton')).tap();
+			await expect(element(by.label('My Pocket Gallery'))).toBeVisible();
+		});
+	});
+
 	describe('Login Flow', () => {
 		it('Should successfully login with valid credentials', async () => {
 			await element(by.id('loginUsernameInput')).typeText('user@test.com');
@@ -71,29 +91,9 @@ describe('Login Screen', () => {
 
 			await waitFor(element(by.text('OK')))
 				.toBeVisible()
-				.withTimeout(3000);
+				.withTimeout(5000);
 
 			await element(by.text('OK')).tap();
-		});
-	});
-
-	describe('Navigation', () => {
-		it('Should navigate to forgot password screen', async () => {
-			await expect(element(by.id('goToForgotPasswordButton'))).toBeVisible();
-			await element(by.id('goToForgotPasswordButton')).tap();
-			await expect(element(by.id('forgotPasswordScreenTitle'))).toBeVisible();
-		});
-
-		it('Should navigate to register screen', async () => {
-			await expect(element(by.id('goToRegisterButton'))).toBeVisible();
-			await element(by.id('goToRegisterButton')).tap();
-			await expect(element(by.id('registerScreenTitle'))).toBeVisible();
-		});
-
-		it('Should show back button and navigate back', async () => {
-			await expect(element(by.id('goBackButton'))).toBeVisible();
-			await element(by.id('goBackButton')).tap();
-			await expect(element(by.label('My Pocket Gallery'))).toBeVisible();
 		});
 	});
 });

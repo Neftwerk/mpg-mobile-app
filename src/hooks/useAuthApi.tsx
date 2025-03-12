@@ -1,7 +1,11 @@
+import { Networks, TransactionBuilder } from '@stellar/stellar-sdk';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { Href, useRouter } from 'expo-router';
+import { useState } from 'react';
 import { Alert } from 'react-native';
+import { storeDeviceSecretKey } from 'utils/handleDeviceSecretKey';
+import { generateKeypair } from 'utils/stellar/generateKeypair';
 
 import { NavigationRoutes } from '@/constants/navigation.routes.enum';
 import { useAuthContext } from '@/context/auth.context';
@@ -15,17 +19,24 @@ import {
 import { IUser } from '@/interfaces/entities/user';
 import { authService } from '@/services/auth/auth.service';
 import tokenStorage from '@/services/storage/token-storage';
+import { submissionService } from '@/services/submission/submission.service';
+import { userService } from '@/services/user/user.service';
 
 export function useAuth() {
 	const router = useRouter();
 	const { setIsAuthenticated, setUser } = useAuthContext();
+	const [isLoading, setIsLoading] = useState({
+		firstLogin: false,
+		signIn: false,
+	});
 
 	const signInMutation = useMutation({
-		mutationFn: async ({ username, password }: ISignInRequest) =>
-			authService.signIn(username, password),
+		mutationFn: async ({ username, password }: ISignInRequest) => {
+			setIsLoading({ ...isLoading, signIn: true });
+			return authService.signIn(username, password);
+		},
 		onSuccess: async (response) => {
 			const { accessToken, refreshToken } = response.data.attributes;
-
 			if (accessToken && refreshToken) {
 				await tokenStorage.setAccessToken(accessToken);
 				await tokenStorage.setRefreshToken(refreshToken);
@@ -34,9 +45,32 @@ export function useAuth() {
 			const user = (await authService.getMe()).data.attributes;
 			if (user) {
 				setUser(user as IUser);
-				setIsAuthenticated(true);
 			}
 
+			if (user && !user.masterKey) {
+				setIsLoading({ ...isLoading, firstLogin: true });
+				const userKeypair = generateKeypair();
+
+				const { xdr } = (
+					await userService.createWallet(userKeypair.publicKey())
+				).data.attributes;
+
+				const transaction = TransactionBuilder.fromXDR(xdr, Networks.TESTNET);
+				transaction.sign(userKeypair);
+
+				await submissionService.submitXdr(transaction.toXDR());
+
+				await storeDeviceSecretKey(user.username, userKeypair.secret());
+
+				const {
+					data: { attributes: userResponse },
+				} = await userService.addWalletToUser(userKeypair.publicKey());
+
+				if (userResponse) {
+					setUser(userResponse as IUser);
+				}
+			}
+			setIsLoading({ firstLogin: false, signIn: false });
 			setIsAuthenticated(true);
 			router.replace(NavigationRoutes.HOME);
 		},
@@ -48,6 +82,7 @@ export function useAuth() {
 			} else if (error.error.title) {
 				Alert.alert(String(error.error.title));
 			}
+			setIsLoading({ firstLogin: false, signIn: false });
 		},
 	});
 
@@ -146,5 +181,6 @@ export function useAuth() {
 		forgotPasswordMutation,
 		confirmPasswordMutation,
 		resendConfirmationMutation,
+		isLoading,
 	};
 }

@@ -1,0 +1,29 @@
+{
+	"request": {
+		"method": "POST",
+		"url": "/api/v1/user/create-wallet",
+		"headers": {
+			"Authorization": {
+				"matches": "Bearer (.*)"
+			}
+		}
+	},
+	"response": {
+		"status": 200,
+		"headers": {
+			"Content-Type": "application/json"
+		},
+		"jsonBody": {
+			"data": {
+				"type": "xdr",
+				"id": "1",
+				"attributes": {
+					"xdr": "AAAAAgAAAACtO4XLhxImozBDoTidJKBECVKijNEvpxlfjJHzGql/sAAABkAAFm14AAAACwAAAAEAAAAAAAAAAAAAAABn0H5wAAAAAAAAAAQAAAABAAAAAK07hcuHEiajMEOhOJ0koEQJUqKM0S+nGV+MkfMaqX+wAAAAEAAAAACUPerht88sgTbsxRHnwsesEnhb7yeh44ng/p2udssHwgAAAAEAAAAArTuFy4cSJqMwQ6E4nSSgRAlSoozRL6cZX4yR8xqpf7AAAAAAAAAAAJQ96uG3zyyBNuzFEefCx6wSeFvvJ6HjieD+na52ywfCAAAAAAL68IAAAAABAAAAAJQ96uG3zyyBNuzFEefCx6wSeFvvJ6HjieD+na52ywfCAAAABgAAAAFVU0RDAAAAACzBL+oSPrC5ICojTh8TqhPOYTUsqKwctXfdXRBSyExDf/////////8AAAABAAAAAJQ96uG3zyyBNuzFEefCx6wSeFvvJ6HjieD+na52ywfCAAAAEQAAAAAAAAACGql/sAAAAEAWIAeHmUZjxbtaCYwi86apg17VA0J5Uzj8B1MgXkV2HMd2wJMk1Cj6/fzVHj9/ERZ6+H6O5Y8RVf7FnRzKtiwKdssHwgAAAEBtflwjY543x3tp4OXKugmUp7m1wmKkpCCoE95GUXnmnspqxapHpZWmI0/kUdXqicU77NZi1EEuGXODbvEyIRQP"
+				}
+			},
+			"links": {
+				"self": "http://localhost:5001/api/v1/user/create-wallet"
+			}
+		}
+	}
+}

@@ -8,5 +8,6 @@ export interface IUser extends Base {
 	surname: string;
 	biography?: string;
 	externalId?: string;
+	masterKey?: string;
 	roles: AppRole[];
 }

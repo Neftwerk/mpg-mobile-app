@@ -25,6 +25,10 @@ describe('LoginScreen', () => {
 		(useRouter as jest.Mock).mockReturnValue({ push: mockPush });
 		(useAuth as jest.Mock).mockReturnValue({
 			signInMutation: mockSignInMutation,
+			isLoading: {
+				signIn: false,
+				firstLogin: false,
+			},
 		});
 	});
 
@@ -87,5 +91,34 @@ describe('LoginScreen', () => {
 			username: 'test@example.com',
 			password: 'Password123.',
 		});
+	});
+
+	test('Should show loading state during sign in', async () => {
+		(useAuth as jest.Mock).mockReturnValue({
+			signInMutation: mockSignInMutation,
+			isLoading: {
+				signIn: true,
+				firstLogin: false,
+			},
+		});
+
+		const { findByTestId } = render(<LoginScreen />);
+		const loginButton = await findByTestId('loginSubmitButton');
+		expect(loginButton.props.accessibilityState.disabled).toBeTruthy();
+	});
+
+	test('Should show first login modal when creating wallet', async () => {
+		(useAuth as jest.Mock).mockReturnValue({
+			signInMutation: mockSignInMutation,
+			isLoading: {
+				signIn: false,
+				firstLogin: true,
+			},
+		});
+
+		const { findByTestId } = render(<LoginScreen />);
+		const firstLoginModal = await findByTestId('firstLoginModal');
+
+		expect(firstLoginModal).toBeTruthy();
 	});
 });
