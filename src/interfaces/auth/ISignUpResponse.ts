@@ -6,6 +6,7 @@ export interface ISignUpResponse {
 	name: string;
 	surname: string;
 	biography?: string;
+	masterKey?: string;
 	createdAt: string;
 	updatedAt: string;
 	deletedAt?: string;
