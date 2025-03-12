@@ -24,7 +24,7 @@ export default function TabLayout() {
 		tabBarBackground: '#F7F4F3',
 	};
 	const router = useRouter();
-	const { isAuthenticated } = useContext(AuthContext);
+	const { isAuthenticated, logout } = useContext(AuthContext);
 
 	return (
 		<Tabs
@@ -75,7 +75,7 @@ export default function TabLayout() {
 				},
 				headerPressOpacity: 1,
 				headerRight: () => (
-					<TouchableOpacity className="px-4">
+					<TouchableOpacity className="px-4" onPress={() => logout()}>
 						<MenuIcon testID="menuIcon" />
 					</TouchableOpacity>
 				),
