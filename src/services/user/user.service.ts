@@ -7,10 +7,7 @@ import { IStellarXdrResponse } from '@/interfaces/stellar/IStellarXdrResponse';
 import { IBaseApiResponse } from '@/types/api.types';
 
 class UserService implements IUserService {
-	api: IApiService<ApiRequestConfig>;
-	constructor(api: IApiService<ApiRequestConfig>) {
-		this.api = api;
-	}
+	constructor(private readonly api: IApiService<ApiRequestConfig>) {}
 	async createWallet(masterKey: string) {
 		return await this.api.post<IBaseApiResponse<IStellarXdrResponse>>(
 			'/user/create-wallet',

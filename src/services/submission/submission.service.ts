@@ -6,10 +6,7 @@ import { ISubmissionXdrSubmitResponse } from '@/interfaces/submission/ISubmissio
 import { IBaseApiResponse } from '@/types/api.types';
 
 class SubmissionService implements ISubmissionService {
-	api: IApiService<ApiRequestConfig>;
-	constructor(api: IApiService<ApiRequestConfig>) {
-		this.api = api;
-	}
+	constructor(private readonly api: IApiService<ApiRequestConfig>) {}
 	async submitXdr(xdr: string) {
 		return await this.api.post<IBaseApiResponse<ISubmissionXdrSubmitResponse>>(
 			'/submission',
