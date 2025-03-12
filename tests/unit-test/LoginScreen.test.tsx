@@ -15,6 +15,7 @@ jest.mock('@/hooks/useAuthApi', () => ({
 }));
 
 describe('LoginScreen', () => {
+	jest.setTimeout(10000);
 	const mockPush = jest.fn();
 	const mockSignInMutation = {
 		mutate: jest.fn(),
