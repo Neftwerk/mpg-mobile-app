@@ -10,4 +10,5 @@ export enum NavigationRoutes {
 	FORGOT_PASSWORD = '/(auth)/forgot-password',
 	CONFIRM_PASSWORD = '/(auth)/confirm-password',
 	CONFIRM_USER = '/(auth)/confirm-user',
+	RECOVERY = '/(recovery)/recover-account',
 }

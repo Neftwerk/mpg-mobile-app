@@ -69,6 +69,12 @@ function RootLayout() {
 									headerShown: false,
 								}}
 							/>
+							<Stack.Screen
+								name="(recovery)"
+								options={{
+									headerShown: false,
+								}}
+							/>
 						</Stack>
 					</BackgroundWrapper>
 				</AuthProvider>
