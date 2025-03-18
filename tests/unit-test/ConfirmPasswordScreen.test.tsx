@@ -59,7 +59,7 @@ describe('ConfirmPasswordScreen', () => {
 		const codeInput = await findByPlaceholderText('Enter the code');
 		const submitButton = await findByText('Change Password');
 
-		await act(() => {
+		await act(async () => {
 			fireEvent.changeText(passwordInput, 'Newpassword123.');
 			fireEvent.changeText(codeInput, '123456');
 			fireEvent.press(submitButton);

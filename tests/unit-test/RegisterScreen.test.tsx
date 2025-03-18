@@ -50,7 +50,7 @@ describe('RegisterScreen', () => {
 		const biographyInput = await findByTestId('registerBiographyInput');
 		const submitButton = await findByTestId('registerSubmitButton');
 
-		await act(() => {
+		await act(async () => {
 			fireEvent.changeText(usernameInput, 'test@example.com');
 			fireEvent.changeText(passwordInput, 'Password.123');
 			fireEvent.changeText(nameInput, 'John');
