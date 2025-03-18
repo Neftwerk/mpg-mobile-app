@@ -71,7 +71,7 @@ describe('LoginScreen', () => {
 	});
 
 	test('Should render login screen correctly', async () => {
-		const { findByTestId } = render(<LoginScreen />);
+		const { findByTestId } = render(<LoginScreen />, { wrapper });
 
 		const screen = await findByTestId('loginScreen');
 		const usernameInput = await findByTestId('loginUsernameInput');
@@ -89,7 +89,7 @@ describe('LoginScreen', () => {
 	});
 
 	test('Should navigate to register screen when register button is pressed', async () => {
-		const { findByTestId } = render(<LoginScreen />);
+		const { findByTestId } = render(<LoginScreen />, { wrapper });
 
 		const registerButton = await findByTestId('goToRegisterButton');
 
@@ -101,7 +101,7 @@ describe('LoginScreen', () => {
 	});
 
 	test('Should navigate to forgot password screen when forgot password button is pressed', async () => {
-		const { findByTestId } = render(<LoginScreen />);
+		const { findByTestId } = render(<LoginScreen />, { wrapper });
 
 		const forgotPasswordButton = await findByTestId('goToForgotPasswordButton');
 
