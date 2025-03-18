@@ -13,6 +13,7 @@ import {
 } from '@/components/assets/icons';
 import { NavigationRoutes } from '@/constants/navigation.routes.enum';
 import { AuthContext } from '@/context/auth.context';
+import { GoToBackButtonType } from '@/types/enum/go-to-back-button-type.enum';
 
 export default function TabLayout() {
 	const TabsColors = {
@@ -41,7 +42,10 @@ export default function TabLayout() {
 				headerShown: true,
 				headerLeft: () =>
 					router.canGoBack() && (
-						<BackButton className="pl-2" returnType={'dismiss'} />
+						<BackButton
+							className="pl-2"
+							returnType={GoToBackButtonType.DISMISS}
+						/>
 					),
 				tabBarStyle: {
 					backgroundColor: TabsColors.tabBarBackground,
