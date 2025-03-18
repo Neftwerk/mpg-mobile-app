@@ -1,12 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
+import { formatRecoveryCodesByDomain } from 'utils/formatRecoveryCodesByDomain';
 
 import { BackgroundWrapper } from '@/components/BackgroundWrapper/BackgroundWrapper';
 import { CustomModal } from '@/components/CustomModal/CustomModal';
 import { CustomInput } from '@/components/Form/CustomInput/CustomInput';
 import { SubmitButton } from '@/components/Form/SubmitButton/SubmitButton';
-import { accountRecoveryDomains } from '@/constants/account-recovery-domains';
 import { RECOVER_ACCOUNT_INDICATIONS } from '@/constants/account-recovery-screen-text.constant';
 import { recoveryAccountInputs } from '@/constants/recover-account-inputs.constants';
 import { RECOVERY_MODAL } from '@/constants/recovery.modal.constant';
@@ -25,16 +25,8 @@ const RecoverAccountScreen = () => {
 		resolver: yupResolver(recoverAccountSchema),
 	});
 
-	const fromRecoveryCodeToServerDomainKeyValueResponse = (
-		data: IRecoveryCodesFormFields,
-	) => {
-		return {
-			[accountRecoveryDomains.PLANET_PAY]: data.planetPayRecoveryCode,
-			[accountRecoveryDomains.BIGGER]: data.biggerRecoveryCode,
-		};
-	};
 	const onSubmit = async (data: IRecoveryCodesFormFields) => {
-		const recoveryCodes = fromRecoveryCodeToServerDomainKeyValueResponse(data);
+		const recoveryCodes = formatRecoveryCodesByDomain(data);
 		await submitRecoveryCodes.mutateAsync({ codes: recoveryCodes });
 	};
 
@@ -79,7 +71,7 @@ const RecoverAccountScreen = () => {
 					isLoading={isLoading}
 				/>
 				<Text className="text-center text-xs text-gray-500 mt-14 mx-4">
-					Powered by PlanetPay & Bigger
+					Powered by Planet Pay & Bigger
 				</Text>
 			</View>
 
