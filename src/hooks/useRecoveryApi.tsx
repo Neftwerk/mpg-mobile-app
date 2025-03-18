@@ -30,7 +30,6 @@ export function useRecoveryApi() {
 				throw new Error(ERROR_MESSAGES.USER_NOT_FOUND_BEFORE_RECOVERY);
 			}
 			const { externalAuthTokens } = response.data.attributes;
-			console.log('externalAuthTokens', externalAuthTokens);
 
 			const newDeviceKey = generateKeypair();
 
