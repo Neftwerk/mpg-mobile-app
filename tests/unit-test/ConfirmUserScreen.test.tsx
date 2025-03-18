@@ -50,7 +50,7 @@ describe('ConfirmUserScreen', () => {
 		const codeInput = await findByPlaceholderText('Enter your code');
 		const confirmButton = await findByText('Confirm');
 
-		await act(() => {
+		await act(async () => {
 			fireEvent.changeText(codeInput, '123456');
 			fireEvent.press(confirmButton);
 		});

@@ -3,7 +3,7 @@ import { Stack, router } from 'expo-router';
 import { BackButton } from '@/components/BackButton/BackButton';
 import { GoToBackButtonType } from '@/types/enum/go-to-back-button-type.enum';
 
-export default function AuthLayout() {
+export default function RecoveryLayout() {
 	return (
 		<Stack
 			screenOptions={{
@@ -15,11 +15,7 @@ export default function AuthLayout() {
 					),
 			}}
 		>
-			<Stack.Screen name="login" />
-			<Stack.Screen name="register" />
-			<Stack.Screen name="forgot-password" />
-			<Stack.Screen name="confirm-user" />
-			<Stack.Screen name="confirm-password" />
+			<Stack.Screen name="recover-account" />
 		</Stack>
 	);
 }

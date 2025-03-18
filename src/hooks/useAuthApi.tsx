@@ -1,11 +1,16 @@
-import { Networks, TransactionBuilder } from '@stellar/stellar-sdk';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { Href, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Alert } from 'react-native';
-import { storeDeviceSecretKey } from 'utils/handleDeviceSecretKey';
-import { generateKeypair } from 'utils/stellar/generateKeypair';
+
+import {
+	getDeviceSecretKey,
+	storeDeviceSecretKey,
+} from '../../utils/handleDeviceSecretKey';
+import { handleConfigureRecovery } from '../../utils/recovery/handleConfigureRecovery';
+import { generateKeypair } from '../../utils/stellar/generateKeypair';
+import { signTransaction } from '../../utils/stellar/signTransaction';
 
 import { NavigationRoutes } from '@/constants/navigation.routes.enum';
 import { useAuthContext } from '@/context/auth.context';
@@ -18,6 +23,7 @@ import {
 } from '@/interfaces/api/api';
 import { IUser } from '@/interfaces/entities/user';
 import { authService } from '@/services/auth/auth.service';
+import { recoveryService } from '@/services/recovery/recovery.service';
 import tokenStorage from '@/services/storage/token-storage';
 import { submissionService } from '@/services/submission/submission.service';
 import { userService } from '@/services/user/user.service';
@@ -37,6 +43,7 @@ export function useAuth() {
 		},
 		onSuccess: async (response) => {
 			const { accessToken, refreshToken } = response.data.attributes;
+
 			if (accessToken && refreshToken) {
 				await tokenStorage.setAccessToken(accessToken);
 				await tokenStorage.setRefreshToken(refreshToken);
@@ -55,10 +62,9 @@ export function useAuth() {
 					await userService.createWallet(userKeypair.publicKey())
 				).data.attributes;
 
-				const transaction = TransactionBuilder.fromXDR(xdr, Networks.TESTNET);
-				transaction.sign(userKeypair);
+				const transaction = signTransaction(xdr, userKeypair.secret());
 
-				await submissionService.submitXdr(transaction.toXDR());
+				await submissionService.submitXdr(transaction);
 
 				await storeDeviceSecretKey(user.username, userKeypair.secret());
 
@@ -69,8 +75,25 @@ export function useAuth() {
 				if (userResponse) {
 					setUser(userResponse as IUser);
 				}
+				const deviceKeypair = generateKeypair();
+
+				await handleConfigureRecovery(deviceKeypair, userKeypair);
+				await storeDeviceSecretKey(
+					user.username,
+					deviceKeypair.secret(),
+					false,
+				);
 			}
+
+			const deviceSecretKey = await getDeviceSecretKey(user.username, false);
+
 			setIsLoading({ firstLogin: false, signIn: false });
+
+			if (!deviceSecretKey) {
+				await recoveryService.sendVerificationCodes();
+				return router.replace(NavigationRoutes.RECOVERY);
+			}
+
 			setIsAuthenticated(true);
 			router.replace(NavigationRoutes.HOME);
 		},
