@@ -1,7 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
-import { formatRecoveryCodesByDomain } from 'utils/formatRecoveryCodesByDomain';
+
+import { formatRecoveryCodesByDomain } from '../../../utils/formatRecoveryCodesByDomain';
 
 import { BackgroundWrapper } from '@/components/BackgroundWrapper/BackgroundWrapper';
 import { CustomModal } from '@/components/CustomModal/CustomModal';
