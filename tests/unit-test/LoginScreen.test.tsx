@@ -30,8 +30,9 @@ const queryClient = new QueryClient();
 const wrapper = ({ children }: { children: React.ReactNode }) => (
 	<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 );
+process.env.EXPO_PUBLIC_API_URL = 'http://localhost:5001';
 
-describe.skip('LoginScreen', () => {
+describe('LoginScreen', () => {
 	const mockPush = jest.fn();
 	const mockReplace = jest.fn();
 
