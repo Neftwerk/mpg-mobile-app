@@ -1,8 +1,15 @@
-# Template Mobile
+# Neftwerk UI
 
-Template for building mobile apps cross-platform with React Native.
+Neftwerk functions as a digital wallet, a social media platform, and a virtual gallery, streamlining access to the contemporary art market.
 
-This project was created and [![runs with Expo Go](https://img.shields.io/badge/Runs%20with%20Expo%20Go-000.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000)](https://expo.dev/client)
+This project was created and [runs with Expo Go](https://expo.dev/client)
+
+## Index
+
+- [Installation and setup](#installation-and-setup)
+- [Environment Variables](#environment-variables)
+- [Tests](#tests)
+- [Builds and Submissions](#builds-and-submissions)
 
 ## Installation and setup
 
@@ -25,6 +32,29 @@ npm run android # Run app on an Android device or emulator
 npm run ios # Run app on an IOS device or emulator
 npm run web # Run app on a browser
 ```
+
+## Environment Variables
+
+#### Application
+
+| Variable                 | Description              |
+| ------------------------ | ------------------------ |
+| `EXPO_PUBLIC_API_URL`    | Neftwerk Api server url. |
+| `EXPO_PUBLIC_SENTRY_DSN` | Your Sentry DSN.         |
+| `SENTRY_AUTH_TOKEN`      | Your Sentry Auth Token.  |
+
+#### Account Recovery
+
+| Variable                                       | Description                      |
+| ---------------------------------------------- | -------------------------------- |
+| `EXPO_PUBLIC_ACCOUNT_RECOVERY_PLANET_PAY_NODE` | PlanetPay Account Recovery Node. |
+| `EXPO_PUBLIC_ACCOUNT_RECOVERY_BIGGER_NODE`     | Bigger Account Recovery Node.    |
+
+#### Stellar
+
+| Variable                                 | Description                 |
+| ---------------------------------------- | --------------------------- |
+| `EXPO_PUBLIC_STELLAR_NETWORK_PASSPHRASE` | Stellar Network Passphrase. |
 
 ## Tests
 
@@ -73,6 +103,7 @@ npm install -g eas-cli # Install eas-cli
 eas login # Login to eas
 eas build:configure # Configure build and generate eas.json file
 ```
+
 Ensure that you have this envs values for upload the sentry source maps in the `eas.json` file.
 ![image](https://github.com/user-attachments/assets/2fa0583c-fb33-413e-81c7-78a411808a0e)
 
